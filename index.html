@@ -32,30 +32,38 @@
               sans: ['"Noto Sans TC"', "system-ui", "sans-serif"],
             },
             colors: {
-              "lab-bg": "#1a1612",
-              "lab-elevated": "#252019",
-              "lab-border": "#3f3a36",
-              "lab-accent": "#c9a227",
-              "lab-accent-soft": "#b8962e",
-              "lab-text-primary": "#f5f5f4",
-              "lab-text-muted": "#a8a29e",
-              "consult-coffee": "#1a1612",
-              "consult-cool": "#64748b",
-              "consult-gold": "#c9a227",
+              "lab-bg": "#2C1E1E",
+              "lab-elevated": "#3d2a2a",
+              "lab-border": "#4a3838",
+              "lab-accent": "#D4AF37",
+              "lab-accent-soft": "#c9a227",
+              "lab-text-primary": "#F8F9FA",
+              "lab-text-muted": "#b8b4b0",
+              "consult-coffee": "#2C1E1E",
+              "consult-cool": "#F8F9FA",
+              "consult-gold": "#D4AF37",
             },
             boxShadow: {
               "glimmer-soft":
-                "0 0 40px rgba(201, 162, 39, 0.15), 0 0 80px rgba(201, 162, 39, 0.06)",
-              "glass": "0 8px 32px rgba(0, 0, 0, 0.24)",
+                "0 0 40px rgba(212, 175, 55, 0.18), 0 0 80px rgba(212, 175, 55, 0.08)",
+              "glass": "0 8px 32px rgba(0, 0, 0, 0.28)",
+              "btn-hover": "0 4px 20px rgba(212, 175, 55, 0.25)",
             },
           },
         },
       };
     </script>
     <style>
+      /* 顧問級字體：呼吸感無襯線、從容留白 */
       body {
         font-family: "Noto Sans TC", system-ui, -apple-system, BlinkMacSystemFont,
           "Segoe UI", sans-serif;
+        letter-spacing: 0.02em;
+        line-height: 1.7;
+      }
+      h1, h2, h3 {
+        letter-spacing: 0.03em;
+        line-height: 1.5;
       }
 
       /* 高端顧問風格：磨砂玻璃 */
@@ -72,14 +80,50 @@
         border: 1px solid rgba(255, 255, 255, 0.08);
       }
 
-      /* 微光背景粒子（微光金） */
+      /* 對話框 #chat：磨砂 10px + 0.5px 金屬拉絲邊框 */
+      #chat.chat-frosted,
+      #chat .chat-window {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+      #chat .chat-window {
+        border: 0.5px solid rgba(212, 175, 55, 0.2);
+        box-shadow: inset 0 0 0 1px rgba(248, 249, 250, 0.04), 0 8px 32px rgba(0, 0, 0, 0.2);
+      }
+      @supports (border-width: 0.5px) {
+        #chat .chat-window { border-width: 0.5px; }
+      }
+
+      /* 按鈕：懸停 深墨咖 → 微光金 漸變 + 柔和陰影 */
+      .btn-consult {
+        background: #2C1E1E;
+        color: #D4AF37;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      }
+      .btn-consult:hover {
+        background: linear-gradient(135deg, #2C1E1E 0%, #3d2a2a 40%, rgba(212, 175, 55, 0.25) 100%);
+        box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+        border-color: rgba(212, 175, 55, 0.5);
+      }
+      .btn-consult-primary {
+        background: linear-gradient(135deg, #2C1E1E 0%, rgba(212, 175, 55, 0.15) 100%);
+        color: #D4AF37;
+        transition: background 0.3s ease, box-shadow 0.3s ease;
+      }
+      .btn-consult-primary:hover {
+        background: linear-gradient(135deg, #3d2a2a 0%, rgba(212, 175, 55, 0.4) 100%);
+        box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+      }
+
+      /* 微光背景粒子（微光金 #D4AF37） */
       .glimmer-dot {
         background: radial-gradient(
           circle at center,
-          rgba(201, 162, 39, 0.35),
+          rgba(212, 175, 55, 0.3),
           transparent 60%
         );
-        opacity: 0.2;
+        opacity: 0.22;
         filter: blur(1px);
         animation: float 16s ease-in-out infinite alternate;
       }
@@ -115,7 +159,7 @@
           background: transparent;
         }
         ::-webkit-scrollbar-thumb {
-          background: #1f2933;
+          background: #4a3838;
           border-radius: 999px;
         }
       }
@@ -133,7 +177,7 @@
         opacity: 0.12;
         background: radial-gradient(
           ellipse 80% 50% at 50% 0%,
-          rgba(201, 162, 39, 0.25),
+          rgba(212, 175, 55, 0.22),
           transparent 70%
         );
         animation: breathe 4s ease-in-out infinite;
@@ -146,18 +190,18 @@
       .glimmer-progress-bar {
         height: 6px;
         border-radius: 999px;
-        background: rgba(63, 58, 54, 0.8);
+        background: rgba(44, 30, 30, 0.9);
         overflow: hidden;
       }
       .glimmer-progress-fill {
         height: 100%;
         border-radius: 999px;
-        background: linear-gradient(90deg, rgba(201, 162, 39, 0.7), rgba(184, 150, 46, 0.5));
+        background: linear-gradient(90deg, rgba(212, 175, 55, 0.75), rgba(201, 162, 39, 0.5));
         transition: width 0.6s ease-out;
       }
-      /* 公益純粹化：純粹、輕盈、不留痕跡的溫暖感（微光金） */
+      /* 公益純粹化：微光金 #D4AF37 */
       .glimmer-pure {
-        box-shadow: 0 0 0 1px rgba(201, 162, 39, 0.08);
+        box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.1);
       }
     </style>
   </head>
@@ -175,7 +219,7 @@
         class="glimmer-dot absolute bottom-[-10%] left-1/2 h-72 w-72 -translate-x-1/2 md:h-96 md:w-96"
       ></div>
       <div
-        class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(26,22,18,0.4),_transparent_55%),radial-gradient(circle_at_bottom,_rgba(201,162,39,0.04),_transparent_60%)]"
+        class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(44,30,30,0.5),_transparent_55%),radial-gradient(circle_at_bottom,_rgba(212,175,55,0.05),_transparent_60%)]"
       ></div>
     </div>
 
@@ -252,7 +296,7 @@
             <div class="flex flex-wrap items-center gap-4 pt-2">
               <a
                 href="#chat"
-                class="inline-flex items-center gap-2 rounded-full bg-lab-accent px-4 py-2 text-xs font-semibold tracking-wide text-lab-bg shadow-lg shadow-lab-accent/30 transition hover:bg-lab-accent-soft hover:shadow-lab-accent/40"
+                class="btn-consult-primary inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold tracking-wide"
               >
                 與實驗室靈魂對話
                 <span class="text-[11px]">↗</span>
@@ -644,7 +688,7 @@
           <div class="mt-6 flex justify-center">
             <button
               type="button"
-              class="consult-scroll inline-flex items-center gap-2 rounded-full bg-lab-accent px-5 py-2.5 text-[11px] font-semibold text-slate-950 shadow-md shadow-lab-accent/500/40 transition hover:bg-lab-accent-soft hover:shadow-lab-accent/40"
+              class="consult-scroll btn-consult-primary inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[11px] font-semibold"
             >
               預約諮詢
               <span class="text-[10px]">↗</span>
@@ -746,7 +790,7 @@
               <a
                 href="#chat"
                 id="glimmer100-sop-btn"
-                class="glimmer-sop-btn inline-flex items-center gap-2 rounded-full border border-lab-accent/50 bg-lab-accent/10 px-4 py-2 text-[11px] font-semibold text-lab-accent transition hover:border-lab-accent/70 hover:bg-lab-accent/20 hover:text-lab-text-primary"
+                class="glimmer-sop-btn btn-consult inline-flex items-center gap-2 rounded-full px-4 py-2 text-[11px] font-semibold"
               >
                 了解微光 100 執行 SOP
                 <span class="text-[10px]">↗</span>
@@ -755,10 +799,10 @@
           </div>
         </section>
 
-        <!-- 互動區：AI Chat · 磨砂玻璃 -->
+        <!-- 互動區：AI Chat · 磨砂 10px + 金屬拉絲邊框 -->
         <section
           id="chat"
-          class="glass-card mt-16 space-y-6 rounded-3xl border border-white/5 p-8 shadow-glass sm:p-10 md:p-12"
+          class="chat-frosted glass-card mt-16 space-y-6 rounded-3xl border border-white/5 p-8 shadow-glass sm:p-10 md:p-12"
         >
           <div class="flex flex-col gap-3 md:flex-row md:items-end">
             <div class="flex-1 space-y-2">
@@ -782,9 +826,9 @@
           <div
             class="grid gap-5 md:grid-cols-[minmax(0,_1.4fr)_minmax(0,_1fr)] md:items-start"
           >
-            <!-- Chat 視窗 -->
+            <!-- Chat 視窗：磨砂 10px + 0.5px 金屬拉絲 -->
             <div
-              class="flex min-h-[260px] flex-col rounded-2xl border border-white/10 bg-slate-950/70 shadow-xl shadow-lab-accent/500/20"
+              class="chat-window flex min-h-[260px] flex-col rounded-2xl bg-lab-elevated/40 overflow-hidden"
             >
               <div
                 class="flex items-center justify-between border-b border-white/5 px-4 py-3 text-[11px]"
