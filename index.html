@@ -665,6 +665,15 @@
               <span class="text-lab-text-muted">參訪定位</span>
               <p class="mt-0.5 text-[11px] text-lab-text-muted leading-relaxed">透過與老師的交流，優化支持機制，確保資源能以最尊重孩子的方式投放。Steve 團隊（Shelly, Angela, 柏賢）同行，專注於傾聽與學習。</p>
             </div>
+            <!-- 4 月訪談的預計核心 -->
+            <div class="rounded-xl border border-cyan-500/15 bg-slate-900/50 px-3 py-3 space-y-2">
+              <p class="text-[10px] font-medium tracking-wide text-cyan-300/90">4 月訪談的預計核心</p>
+              <ul class="text-[11px] text-lab-text-muted leading-relaxed space-y-1.5 list-none pl-0">
+                <li class="flex gap-2"><span class="text-cyan-400/80 shrink-0">·</span><strong class="text-white/90">傾聽老師專業</strong>為核心，不干預第一線教育。</li>
+                <li class="flex gap-2"><span class="text-cyan-400/80 shrink-0">·</span>目標是優化<strong class="text-cyan-200/90">「一杯咖啡，一個喜悅」</strong>的資源投放效率。</li>
+                <li class="flex gap-2"><span class="text-cyan-400/80 shrink-0">·</span>體現<strong class="text-white/90">低調、尊重、同理心</strong>的執行準則，確保公益行動專業且具備人文溫度。</li>
+              </ul>
+            </div>
             <!-- 微光 100 執行準則：即時陪伴、全然傾聽、不留紀錄 · 純粹輕盈不留痕跡 -->
             <div id="glimmer-guidelines" class="glimmer-pure space-y-4 rounded-xl border border-cyan-500/10 bg-slate-900/30 p-4">
               <p class="text-[10px] font-medium tracking-wide text-cyan-300/80">以商業效率驅動永續公益 · 執行準則：低調、尊重、同理心</p>
@@ -1070,6 +1079,19 @@
         const askChildInteraction =
           (text.includes("如何") || text.includes("怎麼")) &&
           (text.includes("跟孩子") || text.includes("與孩子") || text.includes("和孩子") || text.includes("孩子互動"));
+
+        const askAprilSchedule =
+          (text.includes("4 月") || text.includes("四月") || text.includes("4月")) &&
+          (text.includes("行程") || text.includes("計畫") || text.includes("計劃") || text.includes("花東") || text.includes("訪談") || text.includes("什麼時候") || text.includes("何時") || text.includes("出發"));
+
+        if (askAprilSchedule) {
+          return (
+            "4 月中旬我們會去花東，核心很單純：以傾聽老師專業為主，不干預第一線教育。" +
+            "目標是優化「一杯咖啡，一個喜悅」的資源投放效率，讓每一份心意都能穩穩傳到孩子身邊。" +
+            "整趟行程會依低調、尊重、同理心的準則走，確保公益行動既專業又有溫度。我們是去學習、去聽，不是去指導。" +
+            CTA_ENDING
+          );
+        }
 
         if (askChildInteraction) {
           return (
