@@ -32,17 +32,21 @@
               sans: ['"Noto Sans TC"', "system-ui", "sans-serif"],
             },
             colors: {
-              "lab-bg": "#050816",
-              "lab-elevated": "#090b1f",
-              "lab-border": "#1f2937",
-              "lab-accent": "#38bdf8",
-              "lab-accent-soft": "#0ea5e9",
-              "lab-text-primary": "#e5e7eb",
-              "lab-text-muted": "#9ca3af",
+              "lab-bg": "#1a1612",
+              "lab-elevated": "#252019",
+              "lab-border": "#3f3a36",
+              "lab-accent": "#c9a227",
+              "lab-accent-soft": "#b8962e",
+              "lab-text-primary": "#f5f5f4",
+              "lab-text-muted": "#a8a29e",
+              "consult-coffee": "#1a1612",
+              "consult-cool": "#64748b",
+              "consult-gold": "#c9a227",
             },
             boxShadow: {
               "glimmer-soft":
-                "0 0 40px rgba(56, 189, 248, 0.25), 0 0 120px rgba(56, 189, 248, 0.10)",
+                "0 0 40px rgba(201, 162, 39, 0.15), 0 0 80px rgba(201, 162, 39, 0.06)",
+              "glass": "0 8px 32px rgba(0, 0, 0, 0.24)",
             },
           },
         },
@@ -54,14 +58,28 @@
           "Segoe UI", sans-serif;
       }
 
-      /* 微光背景粒子 */
+      /* 高端顧問風格：磨砂玻璃 */
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.04);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      /* 微光背景粒子（微光金） */
       .glimmer-dot {
         background: radial-gradient(
           circle at center,
-          rgba(56, 189, 248, 0.9),
+          rgba(201, 162, 39, 0.35),
           transparent 60%
         );
-        opacity: 0.18;
+        opacity: 0.2;
         filter: blur(1px);
         animation: float 16s ease-in-out infinite alternate;
       }
@@ -112,10 +130,10 @@
         position: absolute;
         inset: 0;
         border-radius: inherit;
-        opacity: 0.15;
+        opacity: 0.12;
         background: radial-gradient(
           ellipse 80% 50% at 50% 0%,
-          rgba(56, 189, 248, 0.4),
+          rgba(201, 162, 39, 0.25),
           transparent 70%
         );
         animation: breathe 4s ease-in-out infinite;
@@ -128,18 +146,18 @@
       .glimmer-progress-bar {
         height: 6px;
         border-radius: 999px;
-        background: rgba(30, 41, 59, 0.9);
+        background: rgba(63, 58, 54, 0.8);
         overflow: hidden;
       }
       .glimmer-progress-fill {
         height: 100%;
         border-radius: 999px;
-        background: linear-gradient(90deg, rgba(56, 189, 248, 0.9), rgba(14, 165, 233, 0.8));
+        background: linear-gradient(90deg, rgba(201, 162, 39, 0.7), rgba(184, 150, 46, 0.5));
         transition: width 0.6s ease-out;
       }
-      /* 公益純粹化：純粹、輕盈、不留痕跡的溫暖感 */
+      /* 公益純粹化：純粹、輕盈、不留痕跡的溫暖感（微光金） */
       .glimmer-pure {
-        box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.06);
+        box-shadow: 0 0 0 1px rgba(201, 162, 39, 0.08);
       }
     </style>
   </head>
@@ -157,31 +175,31 @@
         class="glimmer-dot absolute bottom-[-10%] left-1/2 h-72 w-72 -translate-x-1/2 md:h-96 md:w-96"
       ></div>
       <div
-        class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(15,23,42,0.3),_transparent_55%),radial-gradient(circle_at_bottom,_rgba(8,47,73,0.35),_transparent_60%)]"
+        class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(26,22,18,0.4),_transparent_55%),radial-gradient(circle_at_bottom,_rgba(201,162,39,0.04),_transparent_60%)]"
       ></div>
     </div>
 
     <div class="relative min-h-screen">
       <!-- 導覽列 -->
       <header
-        class="sticky top-0 z-20 border-b border-white/5 bg-lab-bg/80 backdrop-blur-md"
+        class="glass-panel sticky top-0 z-20 border-b border-white/5 bg-lab-bg/70"
       >
         <div
-          class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:px-6 lg:px-8"
+          class="mx-auto flex max-w-5xl items-center justify-between px-6 py-5 md:px-10 lg:px-12"
         >
           <div class="flex items-center gap-3">
             <div
-              class="relative flex h-9 w-9 items-center justify-center rounded-2xl bg-slate-900/80 shadow-glimmer-soft"
+              class="relative flex h-9 w-9 items-center justify-center rounded-2xl bg-lab-elevated/90 shadow-glimmer-soft border border-white/5"
             >
               <span
-                class="absolute inline-flex h-8 w-8 animate-ping rounded-2xl bg-cyan-400/30"
+                class="absolute inline-flex h-8 w-8 animate-ping rounded-2xl bg-lab-accent/20"
               ></span>
-              <span class="relative text-lg font-semibold tracking-tight text-cyan-300"
+              <span class="relative text-lg font-semibold tracking-tight text-lab-accent"
                 >B</span
               >
             </div>
             <div class="leading-tight">
-              <div class="text-sm font-semibold tracking-[0.14em] text-cyan-300">
+              <div class="text-sm font-semibold tracking-[0.14em] text-lab-accent">
                 BEYOND AI LAB
               </div>
               <p class="text-xs text-lab-text-muted">
@@ -197,17 +215,17 @@
         </div>
       </header>
 
-      <main class="mx-auto max-w-6xl px-5 pb-16 pt-10 md:px-6 lg:px-8 lg:pb-20">
-        <!-- Hero 區 -->
+      <main class="mx-auto max-w-5xl px-6 pb-24 pt-14 md:px-10 lg:px-14 lg:pb-28 lg:pt-18">
+        <!-- Hero 區：大量留白 -->
         <section
           id="hero"
-          class="flex flex-col items-start gap-10 pb-14 pt-4 md:flex-row md:items-center md:justify-between md:pt-8 lg:pt-10"
+          class="flex flex-col items-start gap-12 pb-20 pt-6 md:flex-row md:items-center md:justify-between md:pt-12 lg:pt-16"
         >
-          <div class="max-w-xl space-y-6">
+          <div class="max-w-xl space-y-8">
             <p
-              class="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-slate-900/60 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-cyan-300 shadow-glimmer-soft"
+              class="inline-flex items-center gap-2 rounded-full border border-lab-accent/25 glass-panel px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.18em] text-lab-accent shadow-glimmer-soft"
             >
-              <span class="h-1.5 w-1.5 rounded-full bg-cyan-300"></span>
+              <span class="h-1.5 w-1.5 rounded-full bg-lab-accent"></span>
               Glimmer 100 Project
             </p>
 
@@ -226,7 +244,7 @@
               class="max-w-lg text-sm leading-relaxed text-lab-text-muted sm:text-[15px]"
             >
               這裡是
-              <span class="text-cyan-300">AI 應用的實踐者與分享者</span>：
+              <span class="text-lab-accent">AI 應用的實踐者與分享者</span>：
               我們相信效率與溫度可以並存，也相信一杯咖啡、一個喜悅，就能把微光傳出去。
               微光 100 是單純的公益初心——低調、尊重、同理心，把資源交給第一線老師，我們在背後遞上一杯熱咖啡。
             </p>
@@ -234,13 +252,13 @@
             <div class="flex flex-wrap items-center gap-4 pt-2">
               <a
                 href="#chat"
-                class="inline-flex items-center gap-2 rounded-full bg-cyan-500 px-4 py-2 text-xs font-semibold tracking-wide text-slate-950 shadow-lg shadow-cyan-500/40 transition hover:bg-cyan-400 hover:shadow-cyan-400/40"
+                class="inline-flex items-center gap-2 rounded-full bg-lab-accent px-4 py-2 text-xs font-semibold tracking-wide text-lab-bg shadow-lg shadow-lab-accent/30 transition hover:bg-lab-accent-soft hover:shadow-lab-accent/40"
               >
                 與實驗室靈魂對話
                 <span class="text-[11px]">↗</span>
               </a>
               <div class="flex items-center gap-3 text-xs text-lab-text-muted">
-                <span class="inline-flex h-2 w-2 rounded-full bg-emerald-400"></span>
+                <span class="inline-flex h-2 w-2 rounded-full bg-lab-accent"></span>
                 <span>透過 AI SOP，讓微光照亮更多角落</span>
               </div>
             </div>
@@ -248,13 +266,13 @@
 
           <div class="mt-4 w-full max-w-sm md:mt-0 md:max-w-md">
             <div
-              class="relative overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-b from-slate-900/80 via-slate-950 to-black/90 p-5 shadow-[0_0_40px_rgba(15,23,42,0.7)]"
+              class="glass-card relative overflow-hidden rounded-3xl border border-white/5 p-6 shadow-glass"
             >
               <div class="mb-4 flex items-center justify-between text-[10px]">
                 <div class="flex items-center gap-1.5 text-lab-text-muted">
                   <span class="inline-flex h-2 w-2 rounded-full bg-red-500/70"></span>
                   <span class="inline-flex h-2 w-2 rounded-full bg-amber-400/80"></span>
-                  <span class="inline-flex h-2 w-2 rounded-full bg-emerald-400/80"></span>
+                  <span class="inline-flex h-2 w-2 rounded-full bg-lab-accent/80"></span>
                   <span class="ml-2 text-[11px] uppercase tracking-[0.24em]">
                     LIVE LAB
                   </span>
@@ -272,14 +290,14 @@
                 </p>
                 <p>
                   Beyond AI Lab 以
-                  <span class="text-cyan-300">傾聽與對話</span>，
+                  <span class="text-lab-accent">傾聽與對話</span>，
                   訓練一個願意在當下陪伴的系統，而不是只給答案的機器。
                 </p>
               </div>
 
               <div class="mt-4 flex items-center justify-between text-[10px]">
                 <div class="flex items-center gap-2 text-lab-text-muted">
-                  <span class="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400"></span>
+                  <span class="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-lab-accent-soft"></span>
                   <span>Next checkpoint：微光 100</span>
                 </div>
                 <span class="text-[10px] text-lab-text-muted">2026 · Taipei</span>
@@ -288,10 +306,10 @@
           </div>
         </section>
 
-        <!-- 理念區 -->
+        <!-- 理念區：磨砂玻璃 -->
         <section
           id="philosophy"
-          class="space-y-6 rounded-3xl border border-white/5 bg-slate-900/50 p-5 shadow-glimmer-soft sm:p-7 md:p-8"
+          class="glass-card space-y-6 rounded-3xl border border-white/5 p-8 shadow-glass sm:p-10 md:p-12 mt-16"
         >
           <div class="flex flex-col gap-4 md:flex-row md:items-center">
             <div class="flex-1 space-y-2">
@@ -309,9 +327,9 @@
 
           <div class="grid gap-5 md:grid-cols-3">
             <div
-              class="flex flex-col gap-2 rounded-2xl border border-cyan-500/20 bg-slate-950/70 p-4"
+              class="flex flex-col gap-2 rounded-2xl border border-lab-accent/20 bg-slate-950/70 p-4"
             >
-              <h3 class="text-xs font-semibold tracking-[0.2em] text-cyan-300">
+              <h3 class="text-xs font-semibold tracking-[0.2em] text-lab-accent">
                 01 · EMPATHIC AI
               </h3>
               <p class="text-sm font-medium text-white">讓機器學會「蹲下來」</p>
@@ -322,9 +340,9 @@
             </div>
 
             <div
-              class="flex flex-col gap-2 rounded-2xl border border-cyan-500/10 bg-slate-950/60 p-4"
+              class="flex flex-col gap-2 rounded-2xl border border-lab-accent/10 bg-slate-950/60 p-4"
             >
-              <h3 class="text-xs font-semibold tracking-[0.2em] text-cyan-300">
+              <h3 class="text-xs font-semibold tracking-[0.2em] text-lab-accent">
                 02 · GLIMMER 100
               </h3>
               <p class="text-sm font-medium text-white">微光 100 個被遺忘的角落</p>
@@ -335,9 +353,9 @@
             </div>
 
             <div
-              class="flex flex-col gap-2 rounded-2xl border border-cyan-500/10 bg-slate-950/60 p-4"
+              class="flex flex-col gap-2 rounded-2xl border border-lab-accent/10 bg-slate-950/60 p-4"
             >
-              <h3 class="text-xs font-semibold tracking-[0.2em] text-cyan-300">
+              <h3 class="text-xs font-semibold tracking-[0.2em] text-lab-accent">
                 03 · AI × PUBLIC GOOD
               </h3>
               <p class="text-sm font-medium text-white">科技，向公益靠近一公分</p>
@@ -348,10 +366,10 @@
           </div>
         </section>
 
-        <!-- 專業服務與解決方案區（原服務總覽） -->
+        <!-- 專業服務與解決方案區 -->
         <section
           id="services"
-          class="mt-10 space-y-6 rounded-3xl border border-white/5 bg-slate-900/60 p-5 shadow-glimmer-soft sm:p-7 md:mt-12 md:p-8"
+          class="glass-card mt-16 space-y-8 rounded-3xl border border-white/5 p-8 shadow-glass sm:p-10 md:p-12"
         >
           <div class="flex flex-col gap-3 md:flex-row md:items-end">
             <div class="flex-1 space-y-2">
@@ -370,10 +388,10 @@
           <div class="grid gap-5 md:grid-cols-3">
             <!-- 企業級 AI SOP 建立 -->
             <div
-              class="flex flex-col justify-between gap-3 rounded-2xl border border-cyan-500/25 bg-slate-950/70 p-4"
+              class="flex flex-col justify-between gap-3 rounded-2xl border border-lab-accent/25 bg-slate-950/70 p-4"
             >
               <div class="space-y-1.5">
-                <h3 class="text-xs font-semibold tracking-[0.18em] text-cyan-300">
+                <h3 class="text-xs font-semibold tracking-[0.18em] text-lab-accent">
                   企業級 AI SOP 建立
                 </h3>
                 <p class="text-sm font-medium text-white">
@@ -387,7 +405,7 @@
               <div>
                 <button
                   type="button"
-                  class="consult-scroll inline-flex items-center justify-center rounded-full bg-cyan-500 px-3 py-1.5 text-[11px] font-semibold text-slate-950 shadow-md shadow-cyan-500/40 transition hover:bg-cyan-400 hover:shadow-cyan-400/40"
+                  class="consult-scroll inline-flex items-center justify-center rounded-full bg-lab-accent px-3 py-1.5 text-[11px] font-semibold text-slate-950 shadow-md shadow-lab-accent/500/40 transition hover:bg-lab-accent-soft hover:shadow-lab-accent/40"
                 >
                   立即諮詢
                 </button>
@@ -396,10 +414,10 @@
 
             <!-- 公益專案顧問服務 -->
             <div
-              class="flex flex-col justify-between gap-3 rounded-2xl border border-cyan-500/15 bg-slate-950/70 p-4"
+              class="flex flex-col justify-between gap-3 rounded-2xl border border-lab-accent/15 bg-slate-950/70 p-4"
             >
               <div class="space-y-1.5">
-                <h3 class="text-xs font-semibold tracking-[0.18em] text-cyan-300">
+                <h3 class="text-xs font-semibold tracking-[0.18em] text-lab-accent">
                   公益專案顧問服務
                 </h3>
                 <p class="text-sm font-medium text-white">
@@ -413,7 +431,7 @@
               <div>
                 <button
                   type="button"
-                  class="consult-scroll inline-flex items-center justify-center rounded-full bg-cyan-500 px-3 py-1.5 text-[11px] font-semibold text-slate-950 shadow-md shadow-cyan-500/40 transition hover:bg-cyan-400 hover:shadow-cyan-400/40"
+                  class="consult-scroll inline-flex items-center justify-center rounded-full bg-lab-accent px-3 py-1.5 text-[11px] font-semibold text-slate-950 shadow-md shadow-lab-accent/500/40 transition hover:bg-lab-accent-soft hover:shadow-lab-accent/40"
                 >
                   立即諮詢
                 </button>
@@ -422,10 +440,10 @@
 
             <!-- AI AIGC 內容創作 -->
             <div
-              class="flex flex-col justify-between gap-3 rounded-2xl border border-cyan-500/15 bg-slate-950/70 p-4"
+              class="flex flex-col justify-between gap-3 rounded-2xl border border-lab-accent/15 bg-slate-950/70 p-4"
             >
               <div class="space-y-1.5">
-                <h3 class="text-xs font-semibold tracking-[0.18em] text-cyan-300">
+                <h3 class="text-xs font-semibold tracking-[0.18em] text-lab-accent">
                   AI AIGC 內容創作
                 </h3>
                 <p class="text-sm font-medium text-white">
@@ -439,7 +457,7 @@
               <div>
                 <button
                   type="button"
-                  class="consult-scroll inline-flex items-center justify-center rounded-full bg-cyan-500 px-3 py-1.5 text-[11px] font-semibold text-slate-950 shadow-md shadow-cyan-500/40 transition hover:bg-cyan-400 hover:shadow-cyan-400/40"
+                  class="consult-scroll inline-flex items-center justify-center rounded-full bg-lab-accent px-3 py-1.5 text-[11px] font-semibold text-slate-950 shadow-md shadow-lab-accent/500/40 transition hover:bg-lab-accent-soft hover:shadow-lab-accent/40"
                 >
                   立即諮詢
                 </button>
@@ -448,10 +466,10 @@
           </div>
         </section>
 
-        <!-- 專業顧問與解決方案區（Solutions & Consulting） -->
+        <!-- 專業顧問與解決方案區 -->
         <section
           id="solutions"
-          class="mt-8 space-y-6 rounded-3xl border border-white/5 bg-slate-900/70 p-5 shadow-glimmer-soft sm:p-7 md:mt-10 md:p-8"
+          class="glass-card mt-16 space-y-8 rounded-3xl border border-white/5 p-8 shadow-glass sm:p-10 md:p-12"
         >
           <div class="flex flex-col gap-3 md:flex-row md:items-end">
             <div class="flex-1 space-y-2">
@@ -469,10 +487,10 @@
           <div class="grid gap-5 md:grid-cols-3">
             <!-- 企業數位 SOP 自動化 -->
             <div
-              class="flex flex-col justify-between gap-3 rounded-2xl border border-cyan-500/25 bg-slate-950/80 p-4"
+              class="flex flex-col justify-between gap-3 rounded-2xl border border-lab-accent/25 bg-slate-950/80 p-4"
             >
               <div class="space-y-1.5">
-                <h3 class="text-xs font-semibold tracking-[0.18em] text-cyan-300">
+                <h3 class="text-xs font-semibold tracking-[0.18em] text-lab-accent">
                   企業數位 SOP 自動化
                 </h3>
                 <p class="text-sm font-medium text-white">
@@ -486,7 +504,7 @@
               <div>
                 <button
                   type="button"
-                  class="consult-scroll inline-flex items-center justify-center rounded-full bg-cyan-500 px-3 py-1.5 text-[11px] font-semibold text-slate-950 shadow-md shadow-cyan-500/40 transition hover:bg-cyan-400 hover:shadow-cyan-400/40"
+                  class="consult-scroll inline-flex items-center justify-center rounded-full bg-lab-accent px-3 py-1.5 text-[11px] font-semibold text-slate-950 shadow-md shadow-lab-accent/500/40 transition hover:bg-lab-accent-soft hover:shadow-lab-accent/40"
                 >
                   預約諮詢
                 </button>
@@ -495,10 +513,10 @@
 
             <!-- 公益專案策略顧問 -->
             <div
-              class="flex flex-col justify-between gap-3 rounded-2xl border border-cyan-500/20 bg-slate-950/80 p-4"
+              class="flex flex-col justify-between gap-3 rounded-2xl border border-lab-accent/20 bg-slate-950/80 p-4"
             >
               <div class="space-y-1.5">
-                <h3 class="text-xs font-semibold tracking-[0.18em] text-cyan-300">
+                <h3 class="text-xs font-semibold tracking-[0.18em] text-lab-accent">
                   公益專案策略顧問
                 </h3>
                 <p class="text-sm font-medium text-white">
@@ -512,7 +530,7 @@
               <div>
                 <button
                   type="button"
-                  class="consult-scroll inline-flex items-center justify-center rounded-full bg-cyan-500 px-3 py-1.5 text-[11px] font-semibold text-slate-950 shadow-md shadow-cyan-500/40 transition hover:bg-cyan-400 hover:shadow-cyan-400/40"
+                  class="consult-scroll inline-flex items-center justify-center rounded-full bg-lab-accent px-3 py-1.5 text-[11px] font-semibold text-slate-950 shadow-md shadow-lab-accent/500/40 transition hover:bg-lab-accent-soft hover:shadow-lab-accent/40"
                 >
                   預約諮詢
                 </button>
@@ -521,10 +539,10 @@
 
             <!-- AI 品牌影音敘事 -->
             <div
-              class="flex flex-col justify-between gap-3 rounded-2xl border border-cyan-500/20 bg-slate-950/80 p-4"
+              class="flex flex-col justify-between gap-3 rounded-2xl border border-lab-accent/20 bg-slate-950/80 p-4"
             >
               <div class="space-y-1.5">
-                <h3 class="text-xs font-semibold tracking-[0.18em] text-cyan-300">
+                <h3 class="text-xs font-semibold tracking-[0.18em] text-lab-accent">
                   AI 品牌影音敘事
                 </h3>
                 <p class="text-sm font-medium text-white">
@@ -538,7 +556,7 @@
               <div>
                 <button
                   type="button"
-                  class="consult-scroll inline-flex items-center justify-center rounded-full bg-cyan-500 px-3 py-1.5 text-[11px] font-semibold text-slate-950 shadow-md shadow-cyan-500/40 transition hover:bg-cyan-400 hover:shadow-cyan-400/40"
+                  class="consult-scroll inline-flex items-center justify-center rounded-full bg-lab-accent px-3 py-1.5 text-[11px] font-semibold text-slate-950 shadow-md shadow-lab-accent/500/40 transition hover:bg-lab-accent-soft hover:shadow-lab-accent/40"
                 >
                   預約諮詢
                 </button>
@@ -547,10 +565,10 @@
           </div>
         </section>
 
-        <!-- 數位轉型與 SOP 顧問區（Digital Transformation & SOP Consulting） -->
+        <!-- 數位轉型與 SOP 顧問區 -->
         <section
           id="digital-sop"
-          class="mt-8 space-y-7 rounded-3xl border border-white/10 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-5 shadow-glimmer-soft sm:p-7 md:mt-10 md:p-9"
+          class="glass-card mt-16 space-y-8 rounded-3xl border border-white/10 p-8 shadow-glass sm:p-10 md:p-12"
         >
           <div class="flex flex-col gap-3 md:flex-row md:items-end">
             <div class="flex-1 space-y-2">
@@ -569,10 +587,10 @@
           <div class="grid gap-5 md:grid-cols-3">
             <!-- AI 流程自動化 SOP -->
             <div
-              class="flex flex-col gap-3 rounded-2xl border border-cyan-500/30 bg-slate-950/80 p-4"
+              class="flex flex-col gap-3 rounded-2xl border border-lab-accent/30 bg-slate-950/80 p-4"
             >
               <div class="space-y-1.5">
-                <h3 class="text-xs font-semibold tracking-[0.18em] text-cyan-300">
+                <h3 class="text-xs font-semibold tracking-[0.18em] text-lab-accent">
                   AI 流程自動化 SOP
                 </h3>
                 <p class="text-sm font-medium text-white">
@@ -587,10 +605,10 @@
 
             <!-- 微光公益轉型顧問 -->
             <div
-              class="flex flex-col gap-3 rounded-2xl border border-emerald-400/25 bg-slate-950/80 p-4"
+              class="flex flex-col gap-3 rounded-2xl border border-lab-accent/25 bg-slate-950/80 p-4"
             >
               <div class="space-y-1.5">
-                <h3 class="text-xs font-semibold tracking-[0.18em] text-emerald-300">
+                <h3 class="text-xs font-semibold tracking-[0.18em] text-lab-accent">
                   微光公益轉型顧問
                 </h3>
                 <p class="text-sm font-medium text-white">
@@ -605,10 +623,10 @@
 
             <!-- AI 影音故事包裝 -->
             <div
-              class="flex flex-col gap-3 rounded-2xl border border-indigo-400/30 bg-slate-950/80 p-4"
+              class="flex flex-col gap-3 rounded-2xl border border-lab-border bg-slate-950/80 p-4"
             >
               <div class="space-y-1.5">
-                <h3 class="text-xs font-semibold tracking-[0.18em] text-indigo-300">
+                <h3 class="text-xs font-semibold tracking-[0.18em] text-lab-text-muted">
                   AI 影音故事包裝
                 </h3>
                 <p class="text-sm font-medium text-white">
@@ -626,7 +644,7 @@
           <div class="mt-6 flex justify-center">
             <button
               type="button"
-              class="consult-scroll inline-flex items-center gap-2 rounded-full bg-cyan-500 px-5 py-2.5 text-[11px] font-semibold text-slate-950 shadow-md shadow-cyan-500/40 transition hover:bg-cyan-400 hover:shadow-cyan-400/40"
+              class="consult-scroll inline-flex items-center gap-2 rounded-full bg-lab-accent px-5 py-2.5 text-[11px] font-semibold text-slate-950 shadow-md shadow-lab-accent/500/40 transition hover:bg-lab-accent-soft hover:shadow-lab-accent/40"
             >
               預約諮詢
               <span class="text-[10px]">↗</span>
@@ -634,17 +652,17 @@
           </div>
         </section>
 
-        <!-- 微光 100 實踐進度看板（Tech-Style · 呼吸燈） -->
+        <!-- 微光 100 實踐進度看板：磨砂玻璃 · 微光金呼吸燈 -->
         <section
           id="glimmer-board"
-          class="glimmer-board mt-8 space-y-5 rounded-3xl border border-cyan-500/20 bg-slate-950/80 p-5 shadow-glimmer-soft sm:p-6 md:mt-10 md:p-7"
+          class="glimmer-board glass-card mt-16 space-y-5 rounded-3xl border border-lab-accent/20 p-6 shadow-glass sm:p-8 md:p-9"
         >
           <div class="relative space-y-4">
-            <h2 class="text-sm font-semibold tracking-[0.2em] text-cyan-300">
+            <h2 class="text-sm font-semibold tracking-[0.2em] text-lab-accent">
               微光 100 行動紀錄
             </h2>
-            <div class="rounded-xl border border-cyan-500/15 bg-slate-900/50 px-3 py-2.5">
-              <p class="text-[10px] font-medium tracking-wide text-cyan-300/90">賦能第一線教育者</p>
+            <div class="rounded-xl border border-lab-accent/15 bg-slate-900/50 px-3 py-2.5">
+              <p class="text-[10px] font-medium tracking-wide text-lab-accent">賦能第一線教育者</p>
               <p class="mt-1 text-[11px] text-lab-text-muted leading-relaxed">微光 100 由長期陪伴孩子的<strong class="text-white/90">陪讀班老師</strong>專業執行；Steve 團隊僅負責計畫發起與資源支持。我們支持老師，傾聽微光。</p>
             </div>
             <div class="grid gap-3 text-[11px] sm:grid-cols-2 md:grid-cols-3">
@@ -666,45 +684,45 @@
               <p class="mt-0.5 text-[11px] text-lab-text-muted leading-relaxed">透過與老師的交流，優化支持機制，確保資源能以最尊重孩子的方式投放。Steve 團隊（Shelly, Angela, 柏賢）同行，專注於傾聽與學習。</p>
             </div>
             <!-- 4 月訪談的預計核心 -->
-            <div class="rounded-xl border border-cyan-500/15 bg-slate-900/50 px-3 py-3 space-y-2">
-              <p class="text-[10px] font-medium tracking-wide text-cyan-300/90">4 月訪談的預計核心</p>
+            <div class="rounded-xl border border-lab-accent/15 bg-slate-900/50 px-3 py-3 space-y-2">
+              <p class="text-[10px] font-medium tracking-wide text-lab-accent">4 月訪談的預計核心</p>
               <ul class="text-[11px] text-lab-text-muted leading-relaxed space-y-1.5 list-none pl-0">
-                <li class="flex gap-2"><span class="text-cyan-400/80 shrink-0">·</span><strong class="text-white/90">傾聽老師專業</strong>為核心，不干預第一線教育。</li>
-                <li class="flex gap-2"><span class="text-cyan-400/80 shrink-0">·</span>目標是優化<strong class="text-cyan-200/90">「一杯咖啡，一個喜悅」</strong>的資源投放效率。</li>
-                <li class="flex gap-2"><span class="text-cyan-400/80 shrink-0">·</span>體現<strong class="text-white/90">低調、尊重、同理心</strong>的執行準則，確保公益行動專業且具備人文溫度。</li>
+                <li class="flex gap-2"><span class="text-lab-accent/80 shrink-0">·</span><strong class="text-white/90">傾聽老師專業</strong>為核心，不干預第一線教育。</li>
+                <li class="flex gap-2"><span class="text-lab-accent/80 shrink-0">·</span>目標是優化<strong class="text-lab-accent">「一杯咖啡，一個喜悅」</strong>的資源投放效率。</li>
+                <li class="flex gap-2"><span class="text-lab-accent/80 shrink-0">·</span>體現<strong class="text-white/90">低調、尊重、同理心</strong>的執行準則，確保公益行動專業且具備人文溫度。</li>
               </ul>
             </div>
             <!-- 微光 100 執行準則：即時陪伴、全然傾聽、不留紀錄 · 純粹輕盈不留痕跡 -->
-            <div id="glimmer-guidelines" class="glimmer-pure space-y-4 rounded-xl border border-cyan-500/10 bg-slate-900/30 p-4">
-              <p class="text-[10px] font-medium tracking-wide text-cyan-300/80">以商業效率驅動永續公益 · 執行準則：低調、尊重、同理心</p>
+            <div id="glimmer-guidelines" class="glimmer-pure space-y-4 rounded-xl border border-lab-accent/10 bg-slate-900/30 p-4">
+              <p class="text-[10px] font-medium tracking-wide text-lab-accent/80">以商業效率驅動永續公益 · 執行準則：低調、尊重、同理心</p>
               <p class="text-[11px] text-lab-text-muted leading-relaxed italic">純粹的陪伴，輕盈的相遇，不留痕跡的溫暖。</p>
               <div class="space-y-3 pt-1">
                 <div>
                   <p class="text-[11px] font-medium text-white">支持老師，傾聽微光</p>
-                  <p class="mt-0.5 text-[11px] text-lab-text-muted leading-relaxed">這份鼓勵金由<strong class="text-cyan-200/90">第一線教育者</strong>在陪伴中傳遞，肯定孩子的存在價值。不留紀錄、不作追蹤、不帶走任何孩子的隱私。</p>
+                  <p class="mt-0.5 text-[11px] text-lab-text-muted leading-relaxed">這份鼓勵金由<strong class="text-lab-accent">第一線教育者</strong>在陪伴中傳遞，肯定孩子的存在價值。不留紀錄、不作追蹤、不帶走任何孩子的隱私。</p>
                 </div>
                 <div>
                   <p class="text-[11px] font-medium text-white">無條件的肯定</p>
-                  <p class="mt-0.5 text-[11px] text-lab-text-muted leading-relaxed">不看成績、不看表現、不設門檻。核心是<strong class="text-cyan-200/90">價值肯定</strong>。</p>
+                  <p class="mt-0.5 text-[11px] text-lab-text-muted leading-relaxed">不看成績、不看表現、不設門檻。核心是<strong class="text-lab-accent">價值肯定</strong>。</p>
                 </div>
                 <div>
                   <p class="text-[11px] font-medium text-white mb-2">多元的表達方式</p>
                   <p class="text-[11px] text-lab-text-muted leading-relaxed mb-3">我們支持老師以孩子最舒服的方式與之互動——</p>
                   <div class="flex flex-wrap gap-3">
                     <div class="flex items-center gap-2 rounded-lg border border-white/10 bg-slate-950/60 px-3 py-2 min-w-0">
-                      <span class="glimmer-icon flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-cyan-500/10 text-cyan-400" aria-hidden="true">
+                      <span class="glimmer-icon flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-lab-accent/10 text-lab-accent" aria-hidden="true">
                         <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
                       </span>
                       <span class="text-[11px] text-lab-text-primary">文字敘述</span>
                     </div>
                     <div class="flex items-center gap-2 rounded-lg border border-white/10 bg-slate-950/60 px-3 py-2 min-w-0">
-                      <span class="glimmer-icon flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-cyan-500/10 text-cyan-400" aria-hidden="true">
+                      <span class="glimmer-icon flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-lab-accent/10 text-lab-accent" aria-hidden="true">
                         <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125" /></svg>
                       </span>
                       <span class="text-[11px] text-lab-text-primary">隨手塗鴉</span>
                     </div>
                     <div class="flex items-center gap-2 rounded-lg border border-white/10 bg-slate-950/60 px-3 py-2 min-w-0">
-                      <span class="glimmer-icon flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-cyan-500/10 text-cyan-400" aria-hidden="true">
+                      <span class="glimmer-icon flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-lab-accent/10 text-lab-accent" aria-hidden="true">
                         <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z" /></svg>
                       </span>
                       <span class="text-[11px] text-lab-text-primary">口述交流</span>
@@ -718,7 +736,7 @@
             <div class="space-y-1.5">
               <div class="flex justify-between text-[10px]">
                 <span class="text-lab-text-muted">教會聯繫進度</span>
-                <span class="font-medium text-cyan-300">已聯繫 20 座 · 已達成 10%</span>
+                <span class="font-medium text-lab-accent">已聯繫 20 座 · 已達成 10%</span>
               </div>
               <div class="glimmer-progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
                 <div class="glimmer-progress-fill" id="glimmer-progress-fill" style="width: 10%"></div>
@@ -728,7 +746,7 @@
               <a
                 href="#chat"
                 id="glimmer100-sop-btn"
-                class="glimmer-sop-btn inline-flex items-center gap-2 rounded-full border border-cyan-400/50 bg-cyan-500/10 px-4 py-2 text-[11px] font-semibold text-cyan-200 transition hover:border-cyan-400/70 hover:bg-cyan-500/20 hover:text-cyan-100"
+                class="glimmer-sop-btn inline-flex items-center gap-2 rounded-full border border-lab-accent/50 bg-lab-accent/10 px-4 py-2 text-[11px] font-semibold text-lab-accent transition hover:border-lab-accent/70 hover:bg-lab-accent/20 hover:text-lab-text-primary"
               >
                 了解微光 100 執行 SOP
                 <span class="text-[10px]">↗</span>
@@ -737,10 +755,10 @@
           </div>
         </section>
 
-        <!-- 互動區：AI Chat -->
+        <!-- 互動區：AI Chat · 磨砂玻璃 -->
         <section
           id="chat"
-          class="mt-10 space-y-5 rounded-3xl border border-white/5 bg-gradient-to-b from-slate-900/70 via-slate-950 to-black p-5 sm:p-7 md:mt-12 md:p-8"
+          class="glass-card mt-16 space-y-6 rounded-3xl border border-white/5 p-8 shadow-glass sm:p-10 md:p-12"
         >
           <div class="flex flex-col gap-3 md:flex-row md:items-end">
             <div class="flex-1 space-y-2">
@@ -754,9 +772,9 @@
               </p>
             </div>
             <div
-              class="inline-flex items-center gap-2 self-start rounded-full border border-cyan-500/30 bg-slate-900/60 px-3 py-1 text-[10px] font-medium text-cyan-200"
+              class="inline-flex items-center gap-2 self-start rounded-full border border-lab-accent/30 bg-slate-900/60 px-3 py-1 text-[10px] font-medium text-lab-accent"
             >
-              <span class="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400"></span>
+              <span class="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-lab-accent"></span>
               <span>實驗性回應 · 非最終版本</span>
             </div>
           </div>
@@ -766,13 +784,13 @@
           >
             <!-- Chat 視窗 -->
             <div
-              class="flex min-h-[260px] flex-col rounded-2xl border border-white/10 bg-slate-950/70 shadow-xl shadow-cyan-500/20"
+              class="flex min-h-[260px] flex-col rounded-2xl border border-white/10 bg-slate-950/70 shadow-xl shadow-lab-accent/500/20"
             >
               <div
                 class="flex items-center justify-between border-b border-white/5 px-4 py-3 text-[11px]"
               >
                 <div class="flex items-center gap-2 text-lab-text-muted">
-                  <span class="inline-flex h-2 w-2 rounded-full bg-emerald-400"></span>
+                  <span class="inline-flex h-2 w-2 rounded-full bg-lab-accent"></span>
                   <span class="font-medium text-lab-text-primary">Lab Soul · 微光</span>
                   <span class="rounded-full bg-slate-900 px-2 py-0.5 text-[10px]"
                     >beta</span
@@ -787,7 +805,7 @@
               >
                 <div class="flex gap-2 assistant-message">
                   <div
-                    class="mt-1 h-6 w-6 flex-shrink-0 rounded-full bg-gradient-to-br from-cyan-400 to-sky-500 text-[11px] font-semibold text-slate-950 flex items-center justify-center"
+                    class="mt-1 h-6 w-6 flex-shrink-0 rounded-full bg-gradient-to-br from-lab-accent to-lab-accent-soft text-[11px] font-semibold text-slate-950 flex items-center justify-center"
                   >
                     B
                   </div>
@@ -806,7 +824,7 @@
                 <button
                   id="line-share-btn"
                   type="button"
-                  class="inline-flex items-center gap-1 rounded-full border border-cyan-400/50 bg-slate-900/80 px-3 py-1 text-cyan-200 shadow-sm shadow-cyan-500/30 transition hover:border-cyan-300 hover:text-cyan-100 hover:shadow-cyan-400/40"
+                  class="inline-flex items-center gap-1 rounded-full border border-lab-accent/50 bg-slate-900/80 px-3 py-1 text-lab-accent shadow-sm shadow-lab-accent/30 transition hover:border-lab-accent/70 hover:text-lab-text-primary hover:shadow-lab-accent/40"
                 >
                   <span class="text-xs">分享到 LINE</span>
                 </button>
@@ -821,12 +839,12 @@
                     <textarea
                       id="chat-input"
                       rows="1"
-                      class="block w-full resize-none rounded-2xl border border-white/10 bg-slate-950/90 px-3 py-2 pr-10 text-xs text-lab-text-primary outline-none placeholder:text-slate-500 focus:border-cyan-400/70 focus:ring-1 focus:ring-cyan-400/60"
+                      class="block w-full resize-none rounded-2xl border border-white/10 bg-slate-950/90 px-3 py-2 pr-10 text-xs text-lab-text-primary outline-none placeholder:text-slate-500 focus:border-lab-accent/70 focus:ring-1 focus:ring-lab-accent/60"
                       placeholder="可問：為什麼是微光 100？或：怎麼讓工作變輕鬆、多點時間做公益？"
                     ></textarea>
                     <button
                       type="submit"
-                      class="absolute bottom-1.5 right-1.5 inline-flex h-7 w-7 items-center justify-center rounded-full bg-cyan-500 text-[11px] font-semibold text-slate-950 shadow-md shadow-cyan-500/40 transition hover:bg-cyan-400"
+                      class="absolute bottom-1.5 right-1.5 inline-flex h-7 w-7 items-center justify-center rounded-full bg-lab-accent text-[11px] font-semibold text-slate-950 shadow-md shadow-lab-accent/500/40 transition hover:bg-lab-accent-soft"
                       aria-label="送出訊息"
                     >
                       ↗
@@ -841,7 +859,7 @@
               <div
                 class="rounded-2xl border border-white/10 bg-slate-950/60 p-4 space-y-3"
               >
-                <h3 class="text-[11px] font-semibold tracking-[0.18em] text-cyan-300">
+                <h3 class="text-[11px] font-semibold tracking-[0.18em] text-lab-accent">
                   HOW TO ASK
                 </h3>
                 <p class="leading-relaxed">
@@ -855,9 +873,9 @@
               </div>
 
               <div
-                class="rounded-2xl border border-cyan-500/20 bg-slate-950/60 p-4 space-y-2"
+                class="rounded-2xl border border-lab-accent/20 bg-slate-950/60 p-4 space-y-2"
               >
-                <h3 class="text-[11px] font-semibold tracking-[0.18em] text-cyan-300">
+                <h3 class="text-[11px] font-semibold tracking-[0.18em] text-lab-accent">
                   DESIGN NOTE
                 </h3>
                 <p class="leading-relaxed">
@@ -887,7 +905,7 @@
               聯繫：
               <a
                 href="mailto:hello@beyondailab.org"
-                class="text-cyan-300 hover:text-cyan-200"
+                class="text-lab-accent hover:text-lab-accent"
                 >hello@beyondailab.org</a
               >
             </p>
@@ -939,7 +957,7 @@
         bubble.className =
           "max-w-[90%] rounded-2xl px-3 py-2 text-[13px] leading-relaxed " +
           (role === "user"
-            ? "rounded-tr-sm bg-cyan-500 text-slate-950"
+            ? "rounded-tr-sm bg-lab-accent text-slate-950"
             : "rounded-tl-sm bg-slate-800/80 text-lab-text-primary");
         if (role === "assistant") {
           bubble.classList.add("assistant-bubble");
@@ -952,7 +970,7 @@
         if (role === "assistant") {
           const avatar = document.createElement("div");
           avatar.className =
-            "mt-1 h-6 w-6 flex-shrink-0 rounded-full bg-gradient-to-br from-cyan-400 to-sky-500 text-[11px] font-semibold text-slate-950 flex items-center justify-center";
+            "mt-1 h-6 w-6 flex-shrink-0 rounded-full bg-gradient-to-br from-lab-accent to-lab-accent-soft text-[11px] font-semibold text-slate-950 flex items-center justify-center";
           avatar.textContent = "B";
           wrapper.appendChild(avatar);
           wrapper.appendChild(bubble);
@@ -988,17 +1006,17 @@
         const wrapper = document.createElement("div");
         wrapper.className = "flex gap-2 assistant-message lead-form-wrapper";
         wrapper.innerHTML =
-          '<div class="mt-1 h-6 w-6 flex-shrink-0 rounded-full bg-gradient-to-br from-cyan-400 to-sky-500 text-[11px] font-semibold text-slate-950 flex items-center justify-center">B</div>' +
-          '<div class="assistant-bubble max-w-[90%] w-full rounded-2xl rounded-tl-sm bg-slate-800/80 border border-cyan-500/20 overflow-hidden">' +
+          '<div class="mt-1 h-6 w-6 flex-shrink-0 rounded-full bg-gradient-to-br from-lab-accent to-lab-accent-soft text-[11px] font-semibold text-slate-950 flex items-center justify-center">B</div>' +
+          '<div class="assistant-bubble max-w-[90%] w-full rounded-2xl rounded-tl-sm bg-slate-800/80 border border-lab-accent/20 overflow-hidden">' +
           '  <div class="px-4 py-3 border-b border-white/5">' +
-          '    <p class="text-[11px] font-medium tracking-wide text-cyan-300">以商業效率驅動永續公益</p>' +
+          '    <p class="text-[11px] font-medium tracking-wide text-lab-accent">以商業效率驅動永續公益</p>' +
           '    <p class="text-xs text-lab-text-muted mt-1 leading-relaxed">留個聯絡方式，Steve 會跟你聯繫，一起把流程理順、讓工作變輕鬆。</p>' +
           '  </div>' +
           '  <form id="lead-form" class="p-4 space-y-3">' +
-          '    <div><label class="block text-[10px] font-medium text-lab-text-muted mb-1">姓名</label><input type="text" name="name" placeholder="你的姓名" class="lead-input block w-full rounded-xl border border-white/10 bg-slate-950/90 px-3 py-2 text-xs text-lab-text-primary placeholder:text-slate-500 focus:border-cyan-400/70 focus:ring-1 focus:ring-cyan-400/60 outline-none" required /></div>' +
-          '    <div><label class="block text-[10px] font-medium text-lab-text-muted mb-1">聯絡資訊 (Email / LINE)</label><input type="text" name="contact" placeholder="Email 或 LINE ID" class="lead-input block w-full rounded-xl border border-white/10 bg-slate-950/90 px-3 py-2 text-xs text-lab-text-primary placeholder:text-slate-500 focus:border-cyan-400/70 focus:ring-1 focus:ring-cyan-400/60 outline-none" required /></div>' +
-          '    <div><label class="block text-[10px] font-medium text-lab-text-muted mb-1">想諮詢的問題</label><textarea name="question" rows="2" placeholder="簡述你想討論的環節或目標" class="lead-input block w-full resize-none rounded-xl border border-white/10 bg-slate-950/90 px-3 py-2 text-xs text-lab-text-primary placeholder:text-slate-500 focus:border-cyan-400/70 focus:ring-1 focus:ring-cyan-400/60 outline-none" required></textarea></div>' +
-          '    <button type="submit" class="w-full rounded-full bg-cyan-500 px-4 py-2 text-[11px] font-semibold text-slate-950 shadow-md shadow-cyan-500/40 transition hover:bg-cyan-400">送出預約</button>' +
+          '    <div><label class="block text-[10px] font-medium text-lab-text-muted mb-1">姓名</label><input type="text" name="name" placeholder="你的姓名" class="lead-input block w-full rounded-xl border border-white/10 bg-slate-950/90 px-3 py-2 text-xs text-lab-text-primary placeholder:text-slate-500 focus:border-lab-accent/70 focus:ring-1 focus:ring-lab-accent/60 outline-none" required /></div>' +
+          '    <div><label class="block text-[10px] font-medium text-lab-text-muted mb-1">聯絡資訊 (Email / LINE)</label><input type="text" name="contact" placeholder="Email 或 LINE ID" class="lead-input block w-full rounded-xl border border-white/10 bg-slate-950/90 px-3 py-2 text-xs text-lab-text-primary placeholder:text-slate-500 focus:border-lab-accent/70 focus:ring-1 focus:ring-lab-accent/60 outline-none" required /></div>' +
+          '    <div><label class="block text-[10px] font-medium text-lab-text-muted mb-1">想諮詢的問題</label><textarea name="question" rows="2" placeholder="簡述你想討論的環節或目標" class="lead-input block w-full resize-none rounded-xl border border-white/10 bg-slate-950/90 px-3 py-2 text-xs text-lab-text-primary placeholder:text-slate-500 focus:border-lab-accent/70 focus:ring-1 focus:ring-lab-accent/60 outline-none" required></textarea></div>' +
+          '    <button type="submit" class="w-full rounded-full bg-lab-accent px-4 py-2 text-[11px] font-semibold text-slate-950 shadow-md shadow-lab-accent/500/40 transition hover:bg-lab-accent-soft">送出預約</button>' +
           '  </form>' +
           '</div>';
         const leadForm = wrapper.querySelector("#lead-form");
@@ -1011,7 +1029,7 @@
             const data = { name, contact, question, submittedAt: new Date().toISOString() };
             console.log("Beyond AI Lab 潛在客戶名單 (Lead):", JSON.stringify(data, null, 2));
             wrapper.querySelector(".assistant-bubble").innerHTML =
-              '<div class="p-4"><p class="text-xs text-emerald-300 font-medium">資料已傳到 Beyond AI Lab，我們會盡快跟你聯繫。</p><p class="text-[11px] text-lab-text-muted mt-1">謝謝你跟我們一起，讓工作變輕鬆、做公益更有餘裕。</p></div>';
+              '<div class="p-4"><p class="text-xs text-lab-accent font-medium">資料已傳到 Beyond AI Lab，我們會盡快跟你聯繫。</p><p class="text-[11px] text-lab-text-muted mt-1">謝謝你跟我們一起，讓工作變輕鬆、做公益更有餘裕。</p></div>';
           });
         }
         return wrapper;
