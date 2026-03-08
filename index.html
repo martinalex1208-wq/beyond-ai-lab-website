@@ -764,6 +764,10 @@
       const log = document.getElementById("chat-log");
       const lineShareBtn = document.getElementById("line-share-btn");
 
+      // 潛在客戶名單：回合數與表單是否已顯示
+      let userMessageCount = 0;
+      let leadFormShown = false;
+
       // 實驗室知識庫：首席顧問身分 / 公益哲學 / 專業實力（無銀行行政）
       const labKnowledge = {
         identity: "Beyond AI Lab 首席顧問，具備資深企業營運、總經理與股東背景。",
@@ -821,6 +825,65 @@
         const bubbles = log.querySelectorAll(".assistant-bubble");
         if (!bubbles || bubbles.length === 0) return null;
         return bubbles[bubbles.length - 1].innerText.trim();
+      }
+
+      // 偵測商業諮詢意圖（預約、諮詢、合作等）
+      function hasConsultIntent(text) {
+        if (!text || !text.trim()) return false;
+        const t = text.trim().toLowerCase();
+        const keywords = [
+          "預約", "諮詢", "合作", "想談", "想了解", "請聯絡", "報價", "方案",
+          "請聯繫", "想約", "預約諮詢", "聯絡我", "聯繫我", "想請教", "怎麼約",
+          "consult", "booking", "contact"
+        ];
+        return keywords.some((k) => t.includes(k));
+      }
+
+      // 在對話框內生成潛在客戶表單（品牌口吻：商業效率驅動永續公益）
+      function createLeadFormCard() {
+        const wrapper = document.createElement("div");
+        wrapper.className = "flex gap-2 assistant-message lead-form-wrapper";
+        wrapper.innerHTML =
+          '<div class="mt-1 h-6 w-6 flex-shrink-0 rounded-full bg-gradient-to-br from-cyan-400 to-sky-500 text-[11px] font-semibold text-slate-950 flex items-center justify-center">B</div>' +
+          '<div class="assistant-bubble max-w-[90%] w-full rounded-2xl rounded-tl-sm bg-slate-800/80 border border-cyan-500/20 overflow-hidden">' +
+          '  <div class="px-4 py-3 border-b border-white/5">' +
+          '    <p class="text-[11px] font-medium tracking-wide text-cyan-300">以商業效率驅動永續公益</p>' +
+          '    <p class="text-xs text-lab-text-muted mt-1 leading-relaxed">留下您的資訊，我們將由 Steve 與您聯繫，一起把流程理順、讓影響力可持續。</p>' +
+          '  </div>' +
+          '  <form id="lead-form" class="p-4 space-y-3">' +
+          '    <div><label class="block text-[10px] font-medium text-lab-text-muted mb-1">姓名</label><input type="text" name="name" placeholder="您的姓名" class="lead-input block w-full rounded-xl border border-white/10 bg-slate-950/90 px-3 py-2 text-xs text-lab-text-primary placeholder:text-slate-500 focus:border-cyan-400/70 focus:ring-1 focus:ring-cyan-400/60 outline-none" required /></div>' +
+          '    <div><label class="block text-[10px] font-medium text-lab-text-muted mb-1">聯絡資訊 (Email / LINE)</label><input type="text" name="contact" placeholder="Email 或 LINE ID" class="lead-input block w-full rounded-xl border border-white/10 bg-slate-950/90 px-3 py-2 text-xs text-lab-text-primary placeholder:text-slate-500 focus:border-cyan-400/70 focus:ring-1 focus:ring-cyan-400/60 outline-none" required /></div>' +
+          '    <div><label class="block text-[10px] font-medium text-lab-text-muted mb-1">想諮詢的問題</label><textarea name="question" rows="2" placeholder="簡述您想討論的環節或目標" class="lead-input block w-full resize-none rounded-xl border border-white/10 bg-slate-950/90 px-3 py-2 text-xs text-lab-text-primary placeholder:text-slate-500 focus:border-cyan-400/70 focus:ring-1 focus:ring-cyan-400/60 outline-none" required></textarea></div>' +
+          '    <button type="submit" class="w-full rounded-full bg-cyan-500 px-4 py-2 text-[11px] font-semibold text-slate-950 shadow-md shadow-cyan-500/40 transition hover:bg-cyan-400">送出預約</button>' +
+          '  </form>' +
+          '</div>';
+        const leadForm = wrapper.querySelector("#lead-form");
+        if (leadForm) {
+          leadForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const name = (leadForm.querySelector('[name="name"]') || {}).value || "";
+            const contact = (leadForm.querySelector('[name="contact"]') || {}).value || "";
+            const question = (leadForm.querySelector('[name="question"]') || {}).value || "";
+            const data = { name, contact, question, submittedAt: new Date().toISOString() };
+            console.log("Beyond AI Lab 潛在客戶名單 (Lead):", JSON.stringify(data, null, 2));
+            wrapper.querySelector(".assistant-bubble").innerHTML =
+              '<div class="p-4"><p class="text-xs text-emerald-300 font-medium">資料已傳送至 Beyond AI Lab 總部，我們將盡快與您聯繫。</p><p class="text-[11px] text-lab-text-muted mt-1">感謝您以商業效率與永續公益與我們同行。</p></div>';
+          });
+        }
+        return wrapper;
+      }
+
+      // 若符合條件則提議預約並顯示表單（僅一次）
+      function maybeShowLeadForm(lastUserText) {
+        if (leadFormShown) return;
+        const overThreeRounds = userMessageCount > 3;
+        const hasIntent = hasConsultIntent(lastUserText);
+        if (!overThreeRounds && !hasIntent) return;
+        leadFormShown = true;
+        const suggestMsg = "若您願意，我建議您預約 Steve 的專業諮詢，我們可以從一個具體環節開始，把流程理順。請在下方填寫資料。";
+        appendMessage("assistant", suggestMsg);
+        log.appendChild(createLeadFormCard());
+        log.scrollTop = log.scrollHeight;
       }
 
       // 依照使用者問題，優先從實驗室知識庫回應（顧問身分、穩重果斷、流程優化與管理智慧）
@@ -1016,10 +1079,12 @@
 
         appendMessage("user", value);
         input.value = "";
+        userMessageCount += 1;
 
         setTimeout(() => {
           const reply = generateReply(value);
           appendMessage("assistant", reply);
+          maybeShowLeadForm(value);
         }, 600);
       });
 
