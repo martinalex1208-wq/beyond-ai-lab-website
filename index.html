@@ -642,7 +642,11 @@
             <h2 class="text-sm font-semibold tracking-[0.2em] text-cyan-300">
               微光 100 行動紀錄
             </h2>
-            <div class="grid gap-3 text-[11px] sm:grid-cols-2 md:grid-cols-4">
+            <div class="rounded-xl border border-cyan-500/15 bg-slate-900/50 px-3 py-2.5">
+              <p class="text-[10px] font-medium tracking-wide text-cyan-300/90">賦能第一線教育者</p>
+              <p class="mt-1 text-[11px] text-lab-text-muted leading-relaxed">微光 100 由長期陪伴孩子的<strong class="text-white/90">陪讀班老師</strong>專業執行；Steve 團隊僅負責計畫發起與資源支持。我們支持老師，傾聽微光。</p>
+            </div>
+            <div class="grid gap-3 text-[11px] sm:grid-cols-2 md:grid-cols-3">
               <div class="rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2">
                 <span class="text-lab-text-muted">狀態</span>
                 <p class="mt-0.5 font-medium text-white">[ 準備出發 ] 2026 年 4 月中旬</p>
@@ -651,10 +655,14 @@
                 <span class="text-lab-text-muted">地點</span>
                 <p class="mt-0.5 font-medium text-white">花蓮、台東偏鄉教會</p>
               </div>
-              <div class="rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2 sm:col-span-2">
-                <span class="text-lab-text-muted">團隊</span>
-                <p class="mt-0.5 font-medium text-white">Steve 帶領技術實踐團隊（Shelly, Angela, 柏賢）</p>
+              <div class="rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2">
+                <span class="text-lab-text-muted">4 月花東行</span>
+                <p class="mt-0.5 font-medium text-white">深度參訪與訪談老師，優化支持機制</p>
               </div>
+            </div>
+            <div class="rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2">
+              <span class="text-lab-text-muted">參訪定位</span>
+              <p class="mt-0.5 text-[11px] text-lab-text-muted leading-relaxed">透過與老師的交流，優化支持機制，確保資源能以最尊重孩子的方式投放。Steve 團隊（Shelly, Angela, 柏賢）同行，專注於傾聽與學習。</p>
             </div>
             <!-- 微光 100 執行準則：即時陪伴、全然傾聽、不留紀錄 · 純粹輕盈不留痕跡 -->
             <div id="glimmer-guidelines" class="glimmer-pure space-y-4 rounded-xl border border-cyan-500/10 bg-slate-900/30 p-4">
@@ -662,8 +670,8 @@
               <p class="text-[11px] text-lab-text-muted leading-relaxed italic">純粹的陪伴，輕盈的相遇，不留痕跡的溫暖。</p>
               <div class="space-y-3 pt-1">
                 <div>
-                  <p class="text-[11px] font-medium text-white">即時的陪伴與全然的傾聽</p>
-                  <p class="mt-0.5 text-[11px] text-lab-text-muted leading-relaxed">這份 100 元是為了在<strong class="text-cyan-200/90">那一刻</strong>肯定孩子的存在價值。不留紀錄、不作追蹤、不帶走任何孩子的隱私。</p>
+                  <p class="text-[11px] font-medium text-white">支持老師，傾聽微光</p>
+                  <p class="mt-0.5 text-[11px] text-lab-text-muted leading-relaxed">這份鼓勵金由<strong class="text-cyan-200/90">第一線教育者</strong>在陪伴中傳遞，肯定孩子的存在價值。不留紀錄、不作追蹤、不帶走任何孩子的隱私。</p>
                 </div>
                 <div>
                   <p class="text-[11px] font-medium text-white">無條件的肯定</p>
@@ -671,7 +679,7 @@
                 </div>
                 <div>
                   <p class="text-[11px] font-medium text-white mb-2">多元的表達方式</p>
-                  <p class="text-[11px] text-lab-text-muted leading-relaxed mb-3">支持孩子用自己最舒服的方式分享——</p>
+                  <p class="text-[11px] text-lab-text-muted leading-relaxed mb-3">我們支持老師以孩子最舒服的方式與之互動——</p>
                   <div class="flex flex-wrap gap-3">
                     <div class="flex items-center gap-2 rounded-lg border border-white/10 bg-slate-950/60 px-3 py-2 min-w-0">
                       <span class="glimmer-icon flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-cyan-500/10 text-cyan-400" aria-hidden="true">
@@ -1058,6 +1066,17 @@
           (text.includes("夢想") && (text.includes("微光") || text.includes("100"))) ||
           (text.includes("微光") && (text.includes("SOP") || text.includes("怎麼做")));
 
+        const askChildInteraction =
+          (text.includes("如何") || text.includes("怎麼")) &&
+          (text.includes("跟孩子") || text.includes("與孩子") || text.includes("和孩子") || text.includes("孩子互動"));
+
+        if (askChildInteraction) {
+          return (
+            "我們深信信任需要時間。因此，微光計畫不採取陌生接觸，而是將資源交給孩子最信任的老師來執行，我們則專注於守護這份信任。" +
+            CTA_ENDING
+          );
+        }
+
         const askRecord =
           (text.includes("記錄") || text.includes("紀錄") || text.includes("成果")) &&
           (text.includes("微光") || text.includes("100") || text.includes("孩子") || text.includes("如何") || text.includes("怎麼"));
@@ -1068,7 +1087,7 @@
 
         if (askRecord) {
           return (
-            "真正的影響力不需要透過紀錄來證明。我們堅持低調，確保孩子在完全沒有負擔與被觀察感的情況下，享受單純的交流。" +
+            "真正的影響力不需要透過紀錄來證明。我們堅持低調，資源由老師在信任關係中傳遞，確保孩子沒有負擔與被觀察感。我們支持老師，傾聽微光。" +
             CTA_ENDING
           );
         }
@@ -1082,9 +1101,9 @@
 
         if (askGlimmerSop) {
           return (
-            "我們追求的是與孩子靈魂的對等交流。當孩子願意分享一個小小夢想時，這份鼓勵金代表 Beyond AI Lab 對那份夢想的尊重。" +
-            "我們強調即時的陪伴與全然的傾聽：這 100 元是為了在那一刻肯定孩子的存在價值，不留紀錄、不作追蹤、不帶走任何孩子的隱私。" +
-            "我們不利用公益產出任何內容，所有的交流在對話結束那一刻即圓滿完成。" +
+            "微光 100 是「賦能第一線教育者」的計畫：由長期陪伴孩子的陪讀班老師專業執行，Steve 團隊僅負責計畫發起與資源支持。" +
+            "這份鼓勵金由孩子最信任的老師在陪伴中傳遞，代表我們對那份存在價值的尊重；不留紀錄、不作追蹤、不帶走任何孩子的隱私。" +
+            "我們不利用公益產出任何內容，所有的交流在對話結束那一刻即圓滿完成。我們支持老師，傾聽微光。" +
             CTA_ENDING
           );
         }
