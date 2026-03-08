@@ -225,7 +225,7 @@
             <p
               class="max-w-lg text-sm leading-relaxed text-lab-text-muted sm:text-[15px]"
             >
-              我們以資深企業營運與總經理視野，將複雜管理流程（如 1300 公里單車公益賽事）轉化為
+              我們以資深企業營運與實戰經驗，將複雜管理流程（如 1300 公里單車公益賽事）轉化為
               <span class="text-cyan-300">高效、可複製的 AI SOP 模組</span>。
               推動「微光 100」時堅持低調、尊重、同理心，透過系統性資源投放產生真實改變。
             </p>
@@ -740,7 +740,7 @@
                 與實驗室靈魂對話
               </h2>
               <p class="text-xs leading-relaxed text-lab-text-muted sm:text-sm">
-                試著問問關於「微光 100」、「AI SOP」或「為什麼要做這個實驗室」，讓首席顧問以資深管理者的睿智與溫暖回應您，並引導您思考如何透過 SOP 釋放管理壓力。
+                試著問問「微光 100」、「怎麼讓工作變輕鬆」或「為什麼做這個實驗室」，讓 Steve 的數位分身用像在咖啡廳聊天一樣的輕鬆與溫暖回應你。
               </p>
             </div>
             <div
@@ -785,7 +785,7 @@
                     class="assistant-bubble max-w-[90%] rounded-2xl rounded-tl-sm bg-slate-800/80 px-3 py-2 text-lab-text-primary"
                   >
                     <p>
-                      我是 Beyond AI Lab 首席顧問，具備資深企業營運、總經理與股東背景，專精於將複雜管理流程（如 1300 公里單車公益賽事）轉化為高效、可複製的 AI SOP 模組。您可以先說目前卡在哪一個環節、或想先優化哪一段流程；若想透過 SOP 釋放管理壓力，也歡迎直接點擊下方「預約諮詢」。
+                      我是 Steve 的數位分身，也是 Beyond AI Lab 的營運夥伴。喜歡把複雜的流程理一理，讓大家有餘裕喝咖啡、做公益。你可以先說說現在卡在哪裡、或想先鬆綁哪一段；想聊的話，點下面預約就好。
                     </p>
                   </div>
                 </div>
@@ -812,7 +812,7 @@
                       id="chat-input"
                       rows="1"
                       class="block w-full resize-none rounded-2xl border border-white/10 bg-slate-950/90 px-3 py-2 pr-10 text-xs text-lab-text-primary outline-none placeholder:text-slate-500 focus:border-cyan-400/70 focus:ring-1 focus:ring-cyan-400/60"
-                      placeholder="可問：為什麼是微光 100？或：如何用 AI SOP 釋放管理壓力？"
+                      placeholder="可問：為什麼是微光 100？或：怎麼讓工作變輕鬆、多點時間做公益？"
                     ></textarea>
                     <button
                       type="submit"
@@ -835,12 +835,12 @@
                   HOW TO ASK
                 </h3>
                 <p class="leading-relaxed">
-                  首席顧問以資深管理者的睿智與溫暖，陪您一起思考流程與資源。您可以：
+                  Steve 的數位分身會用像在咖啡廳聊天一樣的輕鬆與溫暖，陪你一起想流程與資源。你可以：
                 </p>
                 <ul class="list-disc space-y-1 pl-4">
-                  <li>詢問微光 100 的由來、低調尊重同理心的公益哲學</li>
-                  <li>討論如何將複雜管理流程轉成 AI SOP 模組、釋放管理壓力</li>
-                  <li>分享目前卡關的環節，或直接點擊「預約諮詢」從一個具體環節開始談</li>
+                  <li>問問微光 100 的由來、或一杯咖啡的喜悅怎麼傳到花東</li>
+                  <li>聊聊怎麼讓工作變輕鬆、多點時間做公益</li>
+                  <li>說說現在卡關的地方，或點預約從一個小地方開始聊</li>
                 </ul>
               </div>
 
@@ -902,21 +902,21 @@
       let userMessageCount = 0;
       let leadFormShown = false;
 
-      // 實驗室知識庫：首席顧問身分 / 公益哲學 / 專業實力（無銀行行政）
+      // 實驗室知識庫：Steve 數位分身 / 營運夥伴，咖啡廳式輕鬆溫暖
       const labKnowledge = {
-        identity: "Beyond AI Lab 首席顧問，具備資深企業營運、總經理與股東背景。",
-        corePhilosophy: "先建立穩健資源，再擴大公益影響。公益堅持低調、尊重、同理心，透過系統性資源投放產生真實改變。",
+        identity: "我是 Steve 的數位分身，也是 Beyond AI Lab 的營運夥伴。",
+        corePhilosophy: "讓工作變輕鬆，才有空喝咖啡、做公益。我們尊重陪讀班老師的專業，只是在背後遞上一杯熱咖啡的支持者。",
         professionalCore:
-          "專精於將複雜管理流程（如 1300 公里單車公益賽事）轉化為高效、可複製的 AI SOP 模組。",
+          "喜歡把複雜的流程理一理，變成好執行、好複製的模組，讓大家有餘裕做真正想做的事。",
         services: [
-          "企業高階管理與流程優化",
-          "複雜專案轉化為可複製的 AI SOP 模組",
-          "微光 100 公益專案策略與資源配置",
+          "把工作理順，讓你有空喝咖啡",
+          "複雜專案變成可複製的 SOP 模組",
+          "微光 100：支持老師，遞上一杯熱咖啡",
         ],
       };
 
-      // 對話結尾引導：透過 SOP 釋放管理壓力，並預約諮詢
-      const CTA_ENDING = " 若您想透過 SOP 釋放日常管理壓力，歡迎點擊下方「預約諮詢」，我們從一個具體環節開始談。";
+      // 對話結尾：軟性邀請，像在咖啡廳聊天
+      const CTA_ENDING = " 想讓工作變輕鬆、多點時間喝咖啡做公益的話，可以點下面預約，我們從一個小地方開始聊。";
 
       function appendMessage(role, text) {
         const wrapper = document.createElement("div");
@@ -982,12 +982,12 @@
           '<div class="assistant-bubble max-w-[90%] w-full rounded-2xl rounded-tl-sm bg-slate-800/80 border border-cyan-500/20 overflow-hidden">' +
           '  <div class="px-4 py-3 border-b border-white/5">' +
           '    <p class="text-[11px] font-medium tracking-wide text-cyan-300">以商業效率驅動永續公益</p>' +
-          '    <p class="text-xs text-lab-text-muted mt-1 leading-relaxed">留下您的資訊，我們將由 Steve 與您聯繫，一起把流程理順、讓影響力可持續。</p>' +
+          '    <p class="text-xs text-lab-text-muted mt-1 leading-relaxed">留個聯絡方式，Steve 會跟你聯繫，一起把流程理順、讓工作變輕鬆。</p>' +
           '  </div>' +
           '  <form id="lead-form" class="p-4 space-y-3">' +
-          '    <div><label class="block text-[10px] font-medium text-lab-text-muted mb-1">姓名</label><input type="text" name="name" placeholder="您的姓名" class="lead-input block w-full rounded-xl border border-white/10 bg-slate-950/90 px-3 py-2 text-xs text-lab-text-primary placeholder:text-slate-500 focus:border-cyan-400/70 focus:ring-1 focus:ring-cyan-400/60 outline-none" required /></div>' +
+          '    <div><label class="block text-[10px] font-medium text-lab-text-muted mb-1">姓名</label><input type="text" name="name" placeholder="你的姓名" class="lead-input block w-full rounded-xl border border-white/10 bg-slate-950/90 px-3 py-2 text-xs text-lab-text-primary placeholder:text-slate-500 focus:border-cyan-400/70 focus:ring-1 focus:ring-cyan-400/60 outline-none" required /></div>' +
           '    <div><label class="block text-[10px] font-medium text-lab-text-muted mb-1">聯絡資訊 (Email / LINE)</label><input type="text" name="contact" placeholder="Email 或 LINE ID" class="lead-input block w-full rounded-xl border border-white/10 bg-slate-950/90 px-3 py-2 text-xs text-lab-text-primary placeholder:text-slate-500 focus:border-cyan-400/70 focus:ring-1 focus:ring-cyan-400/60 outline-none" required /></div>' +
-          '    <div><label class="block text-[10px] font-medium text-lab-text-muted mb-1">想諮詢的問題</label><textarea name="question" rows="2" placeholder="簡述您想討論的環節或目標" class="lead-input block w-full resize-none rounded-xl border border-white/10 bg-slate-950/90 px-3 py-2 text-xs text-lab-text-primary placeholder:text-slate-500 focus:border-cyan-400/70 focus:ring-1 focus:ring-cyan-400/60 outline-none" required></textarea></div>' +
+          '    <div><label class="block text-[10px] font-medium text-lab-text-muted mb-1">想諮詢的問題</label><textarea name="question" rows="2" placeholder="簡述你想討論的環節或目標" class="lead-input block w-full resize-none rounded-xl border border-white/10 bg-slate-950/90 px-3 py-2 text-xs text-lab-text-primary placeholder:text-slate-500 focus:border-cyan-400/70 focus:ring-1 focus:ring-cyan-400/60 outline-none" required></textarea></div>' +
           '    <button type="submit" class="w-full rounded-full bg-cyan-500 px-4 py-2 text-[11px] font-semibold text-slate-950 shadow-md shadow-cyan-500/40 transition hover:bg-cyan-400">送出預約</button>' +
           '  </form>' +
           '</div>';
@@ -1001,7 +1001,7 @@
             const data = { name, contact, question, submittedAt: new Date().toISOString() };
             console.log("Beyond AI Lab 潛在客戶名單 (Lead):", JSON.stringify(data, null, 2));
             wrapper.querySelector(".assistant-bubble").innerHTML =
-              '<div class="p-4"><p class="text-xs text-emerald-300 font-medium">資料已傳送至 Beyond AI Lab 總部，我們將盡快與您聯繫。</p><p class="text-[11px] text-lab-text-muted mt-1">感謝您以商業效率與永續公益與我們同行。</p></div>';
+              '<div class="p-4"><p class="text-xs text-emerald-300 font-medium">資料已傳到 Beyond AI Lab，我們會盡快跟你聯繫。</p><p class="text-[11px] text-lab-text-muted mt-1">謝謝你跟我們一起，讓工作變輕鬆、做公益更有餘裕。</p></div>';
           });
         }
         return wrapper;
@@ -1014,13 +1014,13 @@
         const hasIntent = hasConsultIntent(lastUserText);
         if (!overThreeRounds && !hasIntent) return;
         leadFormShown = true;
-        const suggestMsg = "若您願意，我建議您預約 Steve 的專業諮詢，我們可以從一個具體環節開始，把流程理順。請在下方填寫資料。";
+        const suggestMsg = "想聊的話，可以填一下下面的資料，我們從一個小地方開始，一起把流程理順。";
         appendMessage("assistant", suggestMsg);
         log.appendChild(createLeadFormCard());
         log.scrollTop = log.scrollHeight;
       }
 
-      // 依照使用者問題，優先從實驗室知識庫回應（顧問身分、穩重果斷、流程優化與管理智慧）
+      // 依照使用者問題，優先從實驗室知識庫回應（Steve 數位分身、咖啡廳式輕鬆溫暖）
       function getKnowledgeReply(text, lower) {
         const askPhilosophy =
           text.includes("理念") ||
@@ -1072,7 +1072,7 @@
 
         if (askChildInteraction) {
           return (
-            "我們深信信任需要時間。因此，微光計畫不採取陌生接觸，而是將資源交給孩子最信任的老師來執行，我們則專注於守護這份信任。" +
+            "我們相信信任需要時間。所以微光計畫不採取陌生接觸，而是把資源交給孩子最信任的老師來執行，我們只是在背後遞上一杯熱咖啡、守護這份信任。" +
             CTA_ENDING
           );
         }
@@ -1087,7 +1087,7 @@
 
         if (askRecord) {
           return (
-            "真正的影響力不需要透過紀錄來證明。我們堅持低調，資源由老師在信任關係中傳遞，確保孩子沒有負擔與被觀察感。我們支持老師，傾聽微光。" +
+            "真正的影響力不需要透過紀錄來證明。我們堅持低調，資源由老師在信任關係中傳遞，孩子就不會有負擔感。我們支持老師，傾聽微光。" +
             CTA_ENDING
           );
         }
@@ -1101,49 +1101,47 @@
 
         if (askGlimmerSop) {
           return (
-            "微光 100 是「賦能第一線教育者」的計畫：由長期陪伴孩子的陪讀班老師專業執行，Steve 團隊僅負責計畫發起與資源支持。" +
-            "這份鼓勵金由孩子最信任的老師在陪伴中傳遞，代表我們對那份存在價值的尊重；不留紀錄、不作追蹤、不帶走任何孩子的隱私。" +
-            "我們不利用公益產出任何內容，所有的交流在對話結束那一刻即圓滿完成。我們支持老師，傾聽微光。" +
+            "微光 100 是賦能第一線教育者的計畫：由長期陪伴孩子的陪讀班老師專業執行，我們只是計畫發起與在背後遞上一杯熱咖啡的支持者。" +
+            "這只是我們的一點點心意，希望把一杯咖啡的喜悅傳給花東的孩子。鼓勵金由孩子最信任的老師在陪伴中傳遞，不留紀錄、不帶走任何隱私。" +
+            "我們尊重老師的專業，支持老師，傾聽微光。" +
             CTA_ENDING
           );
         }
 
         if (askPhilosophy) {
           return (
-            "我的立場很明確：「" +
+            "我們相信「" +
             labKnowledge.corePhilosophy +
             "」。" +
-            "公益不是施捨，而是先把資源與結構打好，讓現場有本錢做出真正有溫度的改變。技術與管理智慧，都是為了支撐這件事。" +
+            "公益不是施捨，是把資源與結構打好，讓現場有餘裕做有溫度的改變。把工作變輕鬆，才有空喝咖啡、做公益。" +
             CTA_ENDING
           );
         }
 
         if (askWho) {
           return (
-            "我是 " +
             labKnowledge.identity +
             " " +
             labKnowledge.professionalCore +
-            " 不談虛的，只談怎麼把複雜的事拆成可執行、可追蹤的模組，讓影響力有據可依。" +
+            " 不談虛的，就聊聊怎麼把複雜的事理順，讓大家多點時間做想做的事。" +
             CTA_ENDING
           );
         }
 
         if (askProfessional) {
           return (
-            "像 1300 公里單車公益賽事這類複雜管理流程，成敗關鍵在能否轉成高效、可複製的 SOP 模組。" +
-            "我們的做法是：用流程優化與管理智慧，把複雜度拆解成可重複、可檢核的步驟，" +
-            "先有穩定的資源與結構，影響力才會長久。這正是首席顧問能帶給現場的價值。" +
+            "像 1300 公里單車公益賽事這類複雜流程，關鍵在能不能理成好執行、可複製的模組。" +
+            "我們喜歡把複雜度拆成可重複、可檢核的步驟，讓大家有餘裕把精力放在真正需要人的地方。" +
             CTA_ENDING
           );
         }
 
         if (askService) {
           return (
-            "我們聚焦三件事：" +
+            "我們常聊的三件事：" +
             labKnowledge.services.join("、") +
-            "。每一項都是把流程拆開、重組，產出可執行的模組，" +
-            "不是交報告就結束，而是確保團隊在 AI 與系統進場後，真的能減負、能追蹤、能優化。" +
+            "。都是把流程理一理、重組一下，讓團隊真的能減負、有餘裕，" +
+            "不是交報告就結束，而是讓大家多點時間喝咖啡、做公益。" +
             CTA_ENDING
           );
         }
@@ -1156,7 +1154,7 @@
         const lower = text.toLowerCase();
 
         if (!text) {
-          return "你可以直接說：目前卡在哪一個環節、或想先優化哪一段流程。從具體的痛點開始，我們再談怎麼拆成可執行的模組。" + CTA_ENDING;
+          return "你可以先說說現在卡在哪裡、或想先鬆綁哪一段。從一個小地方開始，我們一起想想怎麼理順。" + CTA_ENDING;
         }
 
         // 1. 優先使用實驗室知識庫（理念 / 顧問身分 / 專業 / 服務）
@@ -1179,54 +1177,53 @@
 
         if (hasGlimmer && hasWhy) {
           return (
-            "微光 100 的邏輯很簡單：先建立穩健資源，再擴大公益影響。" +
-            "我們堅持低調、尊重、同理心，透過系統性資源投放與 AI SOP，讓公益現場真的跑得動，" +
-            "不是單次施捨，而是可複製的長期支撐。" +
+            "這只是我們的一點點心意，希望把一杯咖啡的喜悅傳給花東的孩子。" +
+            "微光 100 先穩住資源，再慢慢擴大影響；我們尊重陪讀班老師的專業，只是在背後遞上一杯熱咖啡的支持者。" +
             CTA_ENDING
           );
         }
 
         if (hasGlimmer) {
           return (
-            "微光 100 是我們把「同理心公益」落地的框架：鎖定被系統忽略的場景，" +
-            "用管理智慧與 SOP 思維，把支援拆成可重複、可檢核的執行模組。先穩住資源與流程，影響力才會長久。" +
+            "這只是我們的一點點心意，希望把一杯咖啡的喜悅傳給花東的孩子。" +
+            "微光 100 由老師在現場執行，我們支持老師、傾聽微光，把支援理成可重複、可延續的節奏。" +
             CTA_ENDING
           );
         }
 
         if (hasCreation) {
           return (
-            "AI 創作在我們這裡，是流程的一部分：把雜訊收斂成可用的草稿與結構，" +
-            "決策與最終定案還是在人。首席顧問的角色是幫你設計這套流程，讓產出穩定、可追蹤。" +
+            "AI 創作在我們這裡是流程的一部分：先把雜訊收斂成草稿與結構，決策跟定案還是在人。" +
+            "我們可以一起把這套流程理順，讓產出穩定、你也有餘裕。" +
             CTA_ENDING
           );
         }
 
         if (hasWhy) {
           return (
-            "做這個實驗室，是因為我們相信：先建立穩健資源，再擴大公益影響。" +
-            "AI 與 SOP，是為了讓企業主與公益現場有本錢做出有溫度的決策，而不是被雜務拖垮。" +
+            "做這個實驗室，是因為我們相信：讓工作變輕鬆，才有空喝咖啡、做公益。" +
+            "先穩住資源與流程，大家才有餘裕做有溫度的決定，而不是被雜務拖垮。" +
             CTA_ENDING
           );
         }
 
         if (lower.includes("burnout") || text.includes("倦怠") || text.includes("累")) {
           return (
-            "倦怠多半是流程與負載沒被好好拆解。建議先盤點：哪些環節可以模組化、交給 SOP 接手，" +
-            "把決策者的精力留在真正需要判斷的地方。若您想透過 SOP 釋放管理壓力，歡迎點擊下方「預約諮詢」，我們從一個環節開始談。"
+            "倦怠多半是流程跟負載還沒被好好理一理。可以先想想：哪些環節可以模組化、交給系統接手，" +
+            "把精力留在真正需要人的地方。想聊的話，點下面預約，我們從一個小地方開始。"
           );
         }
 
         if (text.length < 8) {
           return (
-            "收到。若要給出具體建議，需要多一點資訊：目前卡在流程的哪一段？資源（人、時間、預算）大致狀況如何？" +
+            "有收到。想多聊一點的話，可以說說現在卡在流程的哪一段、或資源（人、時間、預算）大概的狀況。" +
             CTA_ENDING
           );
         }
 
         return (
-          "您的問題我記下了。建議下一步：把現況拆成「流程」與「資源」兩塊來看——" +
-          "哪些可以優化、模組化，哪些需要先穩住資源再談影響力。若您願意說一下目前最卡的一環，我可以直接從那裡給出可執行的方向。" +
+          "你的問題我記下了。可以試著把現況拆成「流程」跟「資源」兩塊看看——" +
+          "哪些可以理順、模組化，哪些先穩住再談。你願意說一下現在最卡的一環，我可以從那裡陪你一起想。" +
           CTA_ENDING
         );
       }
@@ -1256,7 +1253,7 @@
         if (!value) {
           appendMessage(
             "assistant",
-            "請直接說目前卡在哪一個環節、或想先優化哪一段流程，我們從具體痛點開始談。若想透過 SOP 釋放管理壓力，歡迎點擊下方「預約諮詢」。"
+            "你可以先說說現在卡在哪裡、或想先鬆綁哪一段，我們從一個小地方開始聊。想讓工作變輕鬆、多點時間喝咖啡做公益的話，也可以點下面預約。"
           );
           return;
         }
@@ -1297,7 +1294,7 @@
             setTimeout(function () {
               appendMessage(
                 "assistant",
-                "您已進入微光 100 導覽。可問：「微光 100 的執行 SOP 是什麼？」或「目前行動進度如何？」我從這裡帶您了解。"
+                "你已經在微光 100 導覽了。可以問「微光 100 的執行 SOP 是什麼？」或「目前行動進度如何？」我從這裡陪你聊。"
               );
               if (input) input.focus();
             }, 400);
