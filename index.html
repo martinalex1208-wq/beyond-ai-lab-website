@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beyond AI Lab</title>
+    <meta
+      name="description"
+      content="Beyond AI Lab - 用 AI 的溫度，照亮被遺忘的角落。結合科技與公益的實驗空間。"
+    />
+    <!-- Google Font -->
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Noto Sans TC"', "system-ui", "sans-serif"],
+            },
+            colors: {
+              "lab-bg": "#050816",
+              "lab-elevated": "#090b1f",
+              "lab-border": "#1f2937",
+              "lab-accent": "#38bdf8",
+              "lab-accent-soft": "#0ea5e9",
+              "lab-text-primary": "#e5e7eb",
+              "lab-text-muted": "#9ca3af",
+            },
+            boxShadow: {
+              "glimmer-soft":
+                "0 0 40px rgba(56, 189, 248, 0.25), 0 0 120px rgba(56, 189, 248, 0.10)",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Noto Sans TC", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+
+      /* 微光背景粒子 */
+      .glimmer-dot {
+        background: radial-gradient(
+          circle at center,
+          rgba(56, 189, 248, 0.9),
+          transparent 60%
+        );
+        opacity: 0.18;
+        filter: blur(1px);
+        animation: float 16s ease-in-out infinite alternate;
+      }
+
+      .glimmer-dot:nth-child(2) {
+        animation-duration: 22s;
+        animation-delay: -5s;
+      }
+
+      .glimmer-dot:nth-child(3) {
+        animation-duration: 26s;
+        animation-delay: -10s;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+        50% {
+          transform: translate3d(20px, -40px, 0) scale(1.1);
+        }
+        100% {
+          transform: translate3d(-10px, 30px, 0) scale(1.05);
+        }
+      }
+
+      /* 自訂捲軸（桌面） */
+      @media (min-width: 768px) {
+        ::-webkit-scrollbar {
+          width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+          background: #1f2933;
+          border-radius: 999px;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-lab-bg text-lab-text-primary antialiased">
+    <!-- 背景微光 -->
+    <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+      <div
+        class="glimmer-dot absolute -top-32 left-[5%] h-64 w-64 md:h-80 md:w-80"
+      ></div>
+      <div
+        class="glimmer-dot absolute top-1/3 right-[-6%] h-56 w-56 md:h-72 md:w-72"
+      ></div>
+      <div
+        class="glimmer-dot absolute bottom-[-10%] left-1/2 h-72 w-72 -translate-x-1/2 md:h-96 md:w-96"
+      ></div>
+      <div
+        class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(15,23,42,0.3),_transparent_55%),radial-gradient(circle_at_bottom,_rgba(8,47,73,0.35),_transparent_60%)]"
+      ></div>
+    </div>
+
+    <div class="relative min-h-screen">
+      <!-- 導覽列 -->
+      <header
+        class="sticky top-0 z-20 border-b border-white/5 bg-lab-bg/80 backdrop-blur-md"
+      >
+        <div
+          class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:px-6 lg:px-8"
+        >
+          <div class="flex items-center gap-3">
+            <div
+              class="relative flex h-9 w-9 items-center justify-center rounded-2xl bg-slate-900/80 shadow-glimmer-soft"
+            >
+              <span
+                class="absolute inline-flex h-8 w-8 animate-ping rounded-2xl bg-cyan-400/30"
+              ></span>
+              <span class="relative text-lg font-semibold tracking-tight text-cyan-300"
+                >B</span
+              >
+            </div>
+            <div class="leading-tight">
+              <div class="text-sm font-semibold tracking-[0.14em] text-cyan-300">
+                BEYOND AI LAB
+              </div>
+              <p class="text-xs text-lab-text-muted">
+                微光 100・讓 AI 更有人味
+              </p>
+            </div>
+          </div>
+          <nav class="hidden gap-6 text-xs font-medium text-lab-text-muted md:flex">
+            <a href="#hero" class="hover:text-lab-text-primary">首頁</a>
+            <a href="#philosophy" class="hover:text-lab-text-primary">理念</a>
+            <a href="#chat" class="hover:text-lab-text-primary">與靈魂對話</a>
+          </nav>
+        </div>
+      </header>
+
+      <main class="mx-auto max-w-6xl px-5 pb-16 pt-10 md:px-6 lg:px-8 lg:pb-20">
+        <!-- Hero 區 -->
+        <section
+          id="hero"
+          class="flex flex-col items-start gap-10 pb-14 pt-4 md:flex-row md:items-center md:justify-between md:pt-8 lg:pt-10"
+        >
+          <div class="max-w-xl space-y-6">
+            <p
+              class="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-slate-900/60 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-cyan-300 shadow-glimmer-soft"
+            >
+              <span class="h-1.5 w-1.5 rounded-full bg-cyan-300"></span>
+              Glimmer 100 Project
+            </p>
+
+            <div class="space-y-3">
+              <h1
+                class="text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl"
+              >
+                Beyond AI Lab
+              </h1>
+              <p class="text-base leading-relaxed text-lab-text-muted sm:text-lg">
+                用 AI 的溫度，照亮被遺忘的角落
+              </p>
+            </div>
+
+            <p
+              class="max-w-lg text-sm leading-relaxed text-lab-text-muted sm:text-[15px]"
+            >
+              在這裡，AI 不只是演算法與算力，而是一束
+              <span class="text-cyan-300">願意蹲下來的微光</span>。
+              我們嘗試讓技術走向那些被忽略的故事，讓機器學會聽見、理解，然後溫柔回應。
+            </p>
+
+            <div class="flex flex-wrap items-center gap-4 pt-2">
+              <a
+                href="#chat"
+                class="inline-flex items-center gap-2 rounded-full bg-cyan-500 px-4 py-2 text-xs font-semibold tracking-wide text-slate-950 shadow-lg shadow-cyan-500/40 transition hover:bg-cyan-400 hover:shadow-cyan-400/40"
+              >
+                與實驗室靈魂對話
+                <span class="text-[11px]">↗</span>
+              </a>
+              <div class="flex items-center gap-3 text-xs text-lab-text-muted">
+                <span class="inline-flex h-2 w-2 rounded-full bg-emerald-400"></span>
+                <span>持續點亮微光 100 個角落</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 w-full max-w-sm md:mt-0 md:max-w-md">
+            <div
+              class="relative overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-b from-slate-900/80 via-slate-950 to-black/90 p-5 shadow-[0_0_40px_rgba(15,23,42,0.7)]"
+            >
+              <div class="mb-4 flex items-center justify-between text-[10px]">
+                <div class="flex items-center gap-1.5 text-lab-text-muted">
+                  <span class="inline-flex h-2 w-2 rounded-full bg-red-500/70"></span>
+                  <span class="inline-flex h-2 w-2 rounded-full bg-amber-400/80"></span>
+                  <span class="inline-flex h-2 w-2 rounded-full bg-emerald-400/80"></span>
+                  <span class="ml-2 text-[11px] uppercase tracking-[0.24em]">
+                    LIVE LAB
+                  </span>
+                </div>
+                <span class="rounded-full bg-slate-800/80 px-2 py-1 text-[10px]"
+                  >v0.1 · prototype</span
+                >
+              </div>
+
+              <div
+                class="space-y-3 rounded-2xl border border-white/5 bg-slate-900/60 p-3 text-[11px] leading-relaxed text-lab-text-muted"
+              >
+                <p>
+                  「如果 AI 也有情緒，它會怎麼看待那些總被忽略的人生片段？」
+                </p>
+                <p>
+                  Beyond AI Lab 嘗試用
+                  <span class="text-cyan-300">故事、文本與對話</span>，
+                  訓練一個願意傾聽的系統，而不是只給答案的機器。
+                </p>
+              </div>
+
+              <div class="mt-4 flex items-center justify-between text-[10px]">
+                <div class="flex items-center gap-2 text-lab-text-muted">
+                  <span class="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400"></span>
+                  <span>Next checkpoint：微光 100</span>
+                </div>
+                <span class="text-[10px] text-lab-text-muted">2026 · Taipei</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 理念區 -->
+        <section
+          id="philosophy"
+          class="space-y-6 rounded-3xl border border-white/5 bg-slate-900/50 p-5 shadow-glimmer-soft sm:p-7 md:p-8"
+        >
+          <div class="flex flex-col gap-4 md:flex-row md:items-center">
+            <div class="flex-1 space-y-2">
+              <h2
+                class="text-lg font-semibold tracking-tight text-white sm:text-xl md:text-2xl"
+              >
+                我們相信：AI 不該只有算力
+              </h2>
+              <p class="text-sm leading-relaxed text-lab-text-muted">
+                在 Beyond AI Lab，AI
+                不只是效率工具或產能放大器，而是一種能夠陪伴、理解與回應的「溫度技術」。我們關心的，不是模型有多大，而是它是否有能力溫柔地對待一個人真實的處境。
+              </p>
+            </div>
+          </div>
+
+          <div class="grid gap-5 md:grid-cols-3">
+            <div
+              class="flex flex-col gap-2 rounded-2xl border border-cyan-500/20 bg-slate-950/70 p-4"
+            >
+              <h3 class="text-xs font-semibold tracking-[0.2em] text-cyan-300">
+                01 · EMPATHIC AI
+              </h3>
+              <p class="text-sm font-medium text-white">讓機器學會「蹲下來」</p>
+              <p class="text-xs leading-relaxed text-lab-text-muted">
+                我們設計的對話，不只追求正確答案，而是讓 AI
+                學會放慢、重述與確認，像朋友一樣回應那些被日常忽略的情緒與需求。
+              </p>
+            </div>
+
+            <div
+              class="flex flex-col gap-2 rounded-2xl border border-cyan-500/10 bg-slate-950/60 p-4"
+            >
+              <h3 class="text-xs font-semibold tracking-[0.2em] text-cyan-300">
+                02 · GLIMMER 100
+              </h3>
+              <p class="text-sm font-medium text-white">微光 100 個被遺忘的角落</p>
+              <p class="text-xs leading-relaxed text-lab-text-muted">
+                我們持續尋找 100 個可能被忽略的場景——偏鄉教學、照護現場、獨居長者、創作者的低潮期——用 AI
+                的陪伴與工具，點亮一點點可以活下去的勇氣。
+              </p>
+            </div>
+
+            <div
+              class="flex flex-col gap-2 rounded-2xl border border-cyan-500/10 bg-slate-950/60 p-4"
+            >
+              <h3 class="text-xs font-semibold tracking-[0.2em] text-cyan-300">
+                03 · AI × PUBLIC GOOD
+              </h3>
+              <p class="text-sm font-medium text-white">科技，向公益靠近一公分</p>
+              <p class="text-xs leading-relaxed text-lab-text-muted">
+                這裡是一個結合科技與公益的實驗空間：我們與非營利組織、第一線工作者與創作者合作，把模型能力轉化成真正可被現場使用的工具。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 專業服務與解決方案區（原服務總覽） -->
+        <section
+          id="services"
+          class="mt-10 space-y-6 rounded-3xl border border-white/5 bg-slate-900/60 p-5 shadow-glimmer-soft sm:p-7 md:mt-12 md:p-8"
+        >
+          <div class="flex flex-col gap-3 md:flex-row md:items-end">
+            <div class="flex-1 space-y-2">
+              <h2
+                class="text-lg font-semibold tracking-tight text-white sm:text-xl md:text-2xl"
+              >
+                專業服務與解決方案（Professional Services &amp; Solutions）
+              </h2>
+              <p class="text-xs leading-relaxed text-lab-text-muted sm:text-sm">
+                從企業營運到公益現場，再到品牌故事敘事，我們結合管理實務、金融背景與 AI 創作能力，
+                為你量身打造既務實又具溫度的解決方案。
+              </p>
+            </div>
+          </div>
+
+          <div class="grid gap-5 md:grid-cols-3">
+            <!-- 企業級 AI SOP 建立 -->
+            <div
+              class="flex flex-col justify-between gap-3 rounded-2xl border border-cyan-500/25 bg-slate-950/70 p-4"
+            >
+              <div class="space-y-1.5">
+                <h3 class="text-xs font-semibold tracking-[0.18em] text-cyan-300">
+                  企業級 AI SOP 建立
+                </h3>
+                <p class="text-sm font-medium text-white">
+                  運用管理與銀行行政背景，重整你的流程地圖
+                </p>
+                <p class="text-xs leading-relaxed text-lab-text-muted">
+                  運用深厚的管理經驗與銀行行政背景，一起把企業裡瑣碎卻關鍵的流程梳理成模組化 SOP，
+                  不論是單車活動管理、行政庶務或內部溝通，都能逐步導入 AI 自動化執行，讓團隊把時間留給真正有價值的決策。
+                </p>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  class="consult-scroll inline-flex items-center justify-center rounded-full bg-cyan-500 px-3 py-1.5 text-[11px] font-semibold text-slate-950 shadow-md shadow-cyan-500/40 transition hover:bg-cyan-400 hover:shadow-cyan-400/40"
+                >
+                  立即諮詢
+                </button>
+              </div>
+            </div>
+
+            <!-- 公益專案顧問服務 -->
+            <div
+              class="flex flex-col justify-between gap-3 rounded-2xl border border-cyan-500/15 bg-slate-950/70 p-4"
+            >
+              <div class="space-y-1.5">
+                <h3 class="text-xs font-semibold tracking-[0.18em] text-cyan-300">
+                  公益專案顧問服務
+                </h3>
+                <p class="text-sm font-medium text-white">
+                  以低調、尊重、同理心打造 CSR 計畫
+                </p>
+                <p class="text-xs leading-relaxed text-lab-text-muted">
+                  以「低調、尊重、同理心」為前提，陪你一起設計具備真實溫度的企業社會責任計畫，
+                  例如參考微光 100 模式，將資源帶往真正需要的角落，讓技術賦能不只是口號，而是被現場悄悄感受到的改變。
+                </p>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  class="consult-scroll inline-flex items-center justify-center rounded-full bg-cyan-500 px-3 py-1.5 text-[11px] font-semibold text-slate-950 shadow-md shadow-cyan-500/40 transition hover:bg-cyan-400 hover:shadow-cyan-400/40"
+                >
+                  立即諮詢
+                </button>
+              </div>
+            </div>
+
+            <!-- AI AIGC 內容創作 -->
+            <div
+              class="flex flex-col justify-between gap-3 rounded-2xl border border-cyan-500/15 bg-slate-950/70 p-4"
+            >
+              <div class="space-y-1.5">
+                <h3 class="text-xs font-semibold tracking-[0.18em] text-cyan-300">
+                  AI AIGC 內容創作
+                </h3>
+                <p class="text-sm font-medium text-white">
+                  以「創曲自序」深度打造品牌故事
+                </p>
+                <p class="text-xs leading-relaxed text-lab-text-muted">
+                  結合 AI 影音、音樂生成與文字腳本設計，為品牌與公益專案打造具備「創曲自序」深度的故事包裝，
+                  讓每一支影片、每一段旋律與每一篇貼文，都能成為你與世界對話的溫柔開場。
+                </p>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  class="consult-scroll inline-flex items-center justify-center rounded-full bg-cyan-500 px-3 py-1.5 text-[11px] font-semibold text-slate-950 shadow-md shadow-cyan-500/40 transition hover:bg-cyan-400 hover:shadow-cyan-400/40"
+                >
+                  立即諮詢
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 專業顧問與解決方案區（Solutions & Consulting） -->
+        <section
+          id="solutions"
+          class="mt-8 space-y-6 rounded-3xl border border-white/5 bg-slate-900/70 p-5 shadow-glimmer-soft sm:p-7 md:mt-10 md:p-8"
+        >
+          <div class="flex flex-col gap-3 md:flex-row md:items-end">
+            <div class="flex-1 space-y-2">
+              <h2
+                class="text-lg font-semibold tracking-tight text-white sm:text-xl md:text-2xl"
+              >
+                專業顧問與解決方案（Solutions &amp; Consulting）
+              </h2>
+              <p class="text-xs leading-relaxed text-lab-text-muted sm:text-sm">
+                當你需要的不只是工具，而是可以並肩思考的夥伴時，這裡提供的是策略、結構與長期陪伴。
+              </p>
+            </div>
+          </div>
+
+          <div class="grid gap-5 md:grid-cols-3">
+            <!-- 企業數位 SOP 自動化 -->
+            <div
+              class="flex flex-col justify-between gap-3 rounded-2xl border border-cyan-500/25 bg-slate-950/80 p-4"
+            >
+              <div class="space-y-1.5">
+                <h3 class="text-xs font-semibold tracking-[0.18em] text-cyan-300">
+                  企業數位 SOP 自動化
+                </h3>
+                <p class="text-sm font-medium text-white">
+                  把大型活動與行政庶務交給 AI
+                </p>
+                <p class="text-xs leading-relaxed text-lab-text-muted">
+                  運用深厚的銀行行政與總經理管理經驗，協助企業將複雜流程（如大型活動管理、行政庶務或內部審核）
+                  模組化為清晰的數位 SOP，並逐步導入 AI 工具自動化執行，降低錯誤、釋放關鍵人力。
+                </p>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  class="consult-scroll inline-flex items-center justify-center rounded-full bg-cyan-500 px-3 py-1.5 text-[11px] font-semibold text-slate-950 shadow-md shadow-cyan-500/40 transition hover:bg-cyan-400 hover:shadow-cyan-400/40"
+                >
+                  預約諮詢
+                </button>
+              </div>
+            </div>
+
+            <!-- 公益專案策略顧問 -->
+            <div
+              class="flex flex-col justify-between gap-3 rounded-2xl border border-cyan-500/20 bg-slate-950/80 p-4"
+            >
+              <div class="space-y-1.5">
+                <h3 class="text-xs font-semibold tracking-[0.18em] text-cyan-300">
+                  公益專案策略顧問
+                </h3>
+                <p class="text-sm font-medium text-white">
+                  以「微光 100」為藍本設計 CSR
+                </p>
+                <p class="text-xs leading-relaxed text-lab-text-muted">
+                  以「微光 100」計畫為藍本，陪你一起規劃具備同理心、尊重且低調的社會責任專案，
+                  從場域選擇、利害關係人溝通到實際執行，以最少的曝光完成最多的陪伴與支持。
+                </p>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  class="consult-scroll inline-flex items-center justify-center rounded-full bg-cyan-500 px-3 py-1.5 text-[11px] font-semibold text-slate-950 shadow-md shadow-cyan-500/40 transition hover:bg-cyan-400 hover:shadow-cyan-400/40"
+                >
+                  預約諮詢
+                </button>
+              </div>
+            </div>
+
+            <!-- AI 品牌影音敘事 -->
+            <div
+              class="flex flex-col justify-between gap-3 rounded-2xl border border-cyan-500/20 bg-slate-950/80 p-4"
+            >
+              <div class="space-y-1.5">
+                <h3 class="text-xs font-semibold tracking-[0.18em] text-cyan-300">
+                  AI 品牌影音敘事
+                </h3>
+                <p class="text-sm font-medium text-white">
+                  用「創曲自序」為品牌注入靈魂
+                </p>
+                <p class="text-xs leading-relaxed text-lab-text-muted">
+                  提供具備「創曲自序」深度的 AIGC 內容創作，結合腳本、音樂與影像生成，
+                  為品牌打造有節奏、有情感的故事線，讓每一支影片都像是一段自白，而不是一支廣告。
+                </p>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  class="consult-scroll inline-flex items-center justify-center rounded-full bg-cyan-500 px-3 py-1.5 text-[11px] font-semibold text-slate-950 shadow-md shadow-cyan-500/40 transition hover:bg-cyan-400 hover:shadow-cyan-400/40"
+                >
+                  預約諮詢
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 數位轉型與 SOP 顧問區（Digital Transformation & SOP Consulting） -->
+        <section
+          id="digital-sop"
+          class="mt-8 space-y-7 rounded-3xl border border-white/10 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-5 shadow-glimmer-soft sm:p-7 md:mt-10 md:p-9"
+        >
+          <div class="flex flex-col gap-3 md:flex-row md:items-end">
+            <div class="flex-1 space-y-2">
+              <h2
+                class="text-lg font-semibold tracking-tight text-white sm:text-xl md:text-2xl"
+              >
+                數位轉型與 SOP 顧問（Digital Transformation &amp; SOP Consulting）
+              </h2>
+              <p class="text-xs leading-relaxed text-lab-text-muted sm:text-sm">
+                結合 62 歲的管理智慧、銀行行政背景與長距離單車賽事經驗，協助你把看似無法系統化的任務，變成 AI 可以穩定接手的結構。
+              </p>
+            </div>
+          </div>
+
+          <!-- 服務卡片 -->
+          <div class="grid gap-5 md:grid-cols-3">
+            <!-- AI 流程自動化 SOP -->
+            <div
+              class="flex flex-col gap-3 rounded-2xl border border-cyan-500/30 bg-slate-950/80 p-4"
+            >
+              <div class="space-y-1.5">
+                <h3 class="text-xs font-semibold tracking-[0.18em] text-cyan-300">
+                  AI 流程自動化 SOP
+                </h3>
+                <p class="text-sm font-medium text-white">
+                  將 1300 公里賽事級的複雜度，轉化為 AI SOP
+                </p>
+                <p class="text-xs leading-relaxed text-lab-text-muted">
+                  運用 62 歲的管理智慧，將企業複雜任務（如 1300 公里單車賽事管理、大型活動排程或跨部門行政庶務）
+                  拆解為 AI 可執行的 SOP 模組，讓每一步都能被追蹤、優化，並在未來持續學習與微調。
+                </p>
+              </div>
+            </div>
+
+            <!-- 微光公益轉型顧問 -->
+            <div
+              class="flex flex-col gap-3 rounded-2xl border border-emerald-400/25 bg-slate-950/80 p-4"
+            >
+              <div class="space-y-1.5">
+                <h3 class="text-xs font-semibold tracking-[0.18em] text-emerald-300">
+                  微光公益轉型顧問
+                </h3>
+                <p class="text-sm font-medium text-white">
+                  以尊重與同理心重構 CSR
+                </p>
+                <p class="text-xs leading-relaxed text-lab-text-muted">
+                  協助企業實踐具備「尊重與同理心」的 CSR 計畫（如微光 100 模式），
+                  從需求洞察、對象選擇到現場執行，設計真正符合在地脈絡、而非只為曝光而存在的公益專案。
+                </p>
+              </div>
+            </div>
+
+            <!-- AI 影音故事包裝 -->
+            <div
+              class="flex flex-col gap-3 rounded-2xl border border-indigo-400/30 bg-slate-950/80 p-4"
+            >
+              <div class="space-y-1.5">
+                <h3 class="text-xs font-semibold tracking-[0.18em] text-indigo-300">
+                  AI 影音故事包裝
+                </h3>
+                <p class="text-sm font-medium text-white">
+                  以「創曲自序」深度打造品牌內容
+                </p>
+                <p class="text-xs leading-relaxed text-lab-text-muted">
+                  提供具備「創曲自序」深度的品牌內容製作，結合 AIGC 影音、音樂與文字腳本，
+                  讓每一支影片與每一段聲音都帶著人的溫度，讓科技成為說故事的夥伴，而不是冰冷的行銷工具。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 區塊底部：預約諮詢按鈕（導向對話框） -->
+          <div class="mt-6 flex justify-center">
+            <button
+              type="button"
+              class="consult-scroll inline-flex items-center gap-2 rounded-full bg-cyan-500 px-5 py-2.5 text-[11px] font-semibold text-slate-950 shadow-md shadow-cyan-500/40 transition hover:bg-cyan-400 hover:shadow-cyan-400/40"
+            >
+              預約諮詢
+              <span class="text-[10px]">↗</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- 互動區：AI Chat -->
+        <section
+          id="chat"
+          class="mt-10 space-y-5 rounded-3xl border border-white/5 bg-gradient-to-b from-slate-900/70 via-slate-950 to-black p-5 sm:p-7 md:mt-12 md:p-8"
+        >
+          <div class="flex flex-col gap-3 md:flex-row md:items-end">
+            <div class="flex-1 space-y-2">
+              <h2
+                class="text-lg font-semibold tracking-tight text-white sm:text-xl md:text-2xl"
+              >
+                與實驗室靈魂對話
+              </h2>
+              <p class="text-xs leading-relaxed text-lab-text-muted sm:text-sm">
+                試著問問關於「微光 100」、「AI 創作」或「為什麼要做這個實驗室」，讓 AI
+                以主理人的語氣回應你。這裡的每一句回答，都在練習如何讓技術變得更有人味。
+              </p>
+            </div>
+            <div
+              class="inline-flex items-center gap-2 self-start rounded-full border border-cyan-500/30 bg-slate-900/60 px-3 py-1 text-[10px] font-medium text-cyan-200"
+            >
+              <span class="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400"></span>
+              <span>實驗性回應 · 非最終版本</span>
+            </div>
+          </div>
+
+          <div
+            class="grid gap-5 md:grid-cols-[minmax(0,_1.4fr)_minmax(0,_1fr)] md:items-start"
+          >
+            <!-- Chat 視窗 -->
+            <div
+              class="flex min-h-[260px] flex-col rounded-2xl border border-white/10 bg-slate-950/70 shadow-xl shadow-cyan-500/20"
+            >
+              <div
+                class="flex items-center justify-between border-b border-white/5 px-4 py-3 text-[11px]"
+              >
+                <div class="flex items-center gap-2 text-lab-text-muted">
+                  <span class="inline-flex h-2 w-2 rounded-full bg-emerald-400"></span>
+                  <span class="font-medium text-lab-text-primary">Lab Soul · 微光</span>
+                  <span class="rounded-full bg-slate-900 px-2 py-0.5 text-[10px]"
+                    >beta</span
+                  >
+                </div>
+                <span class="text-[10px] text-lab-text-muted">回應以文字生成 · 約 1 秒</span>
+              </div>
+
+              <div
+                id="chat-log"
+                class="flex-1 space-y-3 overflow-y-auto px-4 py-4 text-[13px]"
+              >
+                <div class="flex gap-2 assistant-message">
+                  <div
+                    class="mt-1 h-6 w-6 flex-shrink-0 rounded-full bg-gradient-to-br from-cyan-400 to-sky-500 text-[11px] font-semibold text-slate-950 flex items-center justify-center"
+                  >
+                    B
+                  </div>
+                  <div
+                    class="assistant-bubble max-w-[90%] rounded-2xl rounded-tl-sm bg-slate-800/80 px-3 py-2 text-lab-text-primary"
+                  >
+                    <p>
+                      嗨，我是 Beyond AI Lab
+                      的實驗室靈魂。如果你願意，跟我聊聊你正在關心的角落，我們一起想想，AI
+                      能幫上什麼忙。
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 分享到 LINE 按鈕 -->
+              <div class="flex justify-end px-4 pb-2 text-[11px]">
+                <button
+                  id="line-share-btn"
+                  type="button"
+                  class="inline-flex items-center gap-1 rounded-full border border-cyan-400/50 bg-slate-900/80 px-3 py-1 text-cyan-200 shadow-sm shadow-cyan-500/30 transition hover:border-cyan-300 hover:text-cyan-100 hover:shadow-cyan-400/40"
+                >
+                  <span class="text-xs">分享到 LINE</span>
+                </button>
+              </div>
+
+              <form
+                id="chat-form"
+                class="border-t border-white/5 px-3 py-3 sm:px-4"
+              >
+                <div class="flex items-end gap-2 sm:gap-3">
+                  <div class="relative flex-1">
+                    <textarea
+                      id="chat-input"
+                      rows="1"
+                      class="block w-full resize-none rounded-2xl border border-white/10 bg-slate-950/90 px-3 py-2 pr-10 text-xs text-lab-text-primary outline-none placeholder:text-slate-500 focus:border-cyan-400/70 focus:ring-1 focus:ring-cyan-400/60"
+                      placeholder="可以試著問：為什麼是微光 100？或：你怎麼看 AI 創作？"
+                    ></textarea>
+                    <button
+                      type="submit"
+                      class="absolute bottom-1.5 right-1.5 inline-flex h-7 w-7 items-center justify-center rounded-full bg-cyan-500 text-[11px] font-semibold text-slate-950 shadow-md shadow-cyan-500/40 transition hover:bg-cyan-400"
+                      aria-label="送出訊息"
+                    >
+                      ↗
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- 提示說明 -->
+            <div class="space-y-4 text-xs text-lab-text-muted">
+              <div
+                class="rounded-2xl border border-white/10 bg-slate-950/60 p-4 space-y-3"
+              >
+                <h3 class="text-[11px] font-semibold tracking-[0.18em] text-cyan-300">
+                  HOW TO ASK
+                </h3>
+                <p class="leading-relaxed">
+                  這裡的 AI
+                  並不是要給你「標準答案」，而是試著用主理人的語氣，陪你一起思考與對話。你可以：
+                </p>
+                <ul class="list-disc space-y-1 pl-4">
+                  <li>詢問微光 100 的由來、想解決的問題、或未來想去的地方</li>
+                  <li>討論 AI 創作的邊界：什麼時候是輔助？什麼時候會取代？</li>
+                  <li>分享你正在經歷的卡關，問問看 AI 能扮演什麼角色</li>
+                </ul>
+              </div>
+
+              <div
+                class="rounded-2xl border border-cyan-500/20 bg-slate-950/60 p-4 space-y-2"
+              >
+                <h3 class="text-[11px] font-semibold tracking-[0.18em] text-cyan-300">
+                  DESIGN NOTE
+                </h3>
+                <p class="leading-relaxed">
+                  所有回應皆為模擬，尚未連接真實模型。正式版本會加入更細膩的語氣設計、長期記憶，與對公益現場的深度理解。
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- 頁尾 -->
+      <footer
+        class="border-t border-white/5 bg-black/70 px-5 py-5 text-[11px] text-lab-text-muted md:px-6 lg:px-8"
+      >
+        <div
+          class="mx-auto flex max-w-6xl flex-col gap-3 md:flex-row md:items-center md:justify-between"
+        >
+          <div class="space-y-1">
+            <p class="text-xs font-medium text-lab-text-primary">
+              Beyond AI Lab
+            </p>
+            <p>用 AI 的溫度，照亮被遺忘的角落。</p>
+          </div>
+          <div class="space-y-1 text-xs md:text-right">
+            <p>
+              聯繫：
+              <a
+                href="mailto:hello@beyondailab.org"
+                class="text-cyan-300 hover:text-cyan-200"
+                >hello@beyondailab.org</a
+              >
+            </p>
+            <p class="text-[10px] text-lab-text-muted">
+              &copy; <span id="year"></span> Beyond AI Lab. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // 動態年份
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const form = document.getElementById("chat-form");
+      const input = document.getElementById("chat-input");
+      const log = document.getElementById("chat-log");
+      const lineShareBtn = document.getElementById("line-share-btn");
+
+      // 實驗室知識庫：核心理念 / 關於 Steve / 服務項目
+      const labKnowledge = {
+        corePhilosophy: "科技是為了服務人，讓微光照進偏鄉。",
+        aboutSteve:
+          "Steve 是一位擁有 62 歲人生閱歷、橫跨銀行、企業管理與單車運動的 AI 探險家，擅長把複雜的技術翻譯成現場真的用得上的工具。",
+        services: [
+          "AI 諮詢",
+          "公益專案策劃",
+          "數位轉型 SOP 建立",
+        ],
+      };
+
+      function appendMessage(role, text) {
+        const wrapper = document.createElement("div");
+        wrapper.className = "flex gap-2 " + (role === "user" ? "justify-end" : "");
+        if (role === "assistant") {
+          wrapper.classList.add("assistant-message");
+        }
+
+        const bubble = document.createElement("div");
+        bubble.className =
+          "max-w-[90%] rounded-2xl px-3 py-2 text-[13px] leading-relaxed " +
+          (role === "user"
+            ? "rounded-tr-sm bg-cyan-500 text-slate-950"
+            : "rounded-tl-sm bg-slate-800/80 text-lab-text-primary");
+        if (role === "assistant") {
+          bubble.classList.add("assistant-bubble");
+        }
+
+        const textNode = document.createElement("p");
+        textNode.textContent = text;
+        bubble.appendChild(textNode);
+
+        if (role === "assistant") {
+          const avatar = document.createElement("div");
+          avatar.className =
+            "mt-1 h-6 w-6 flex-shrink-0 rounded-full bg-gradient-to-br from-cyan-400 to-sky-500 text-[11px] font-semibold text-slate-950 flex items-center justify-center";
+          avatar.textContent = "B";
+          wrapper.appendChild(avatar);
+          wrapper.appendChild(bubble);
+        } else {
+          wrapper.appendChild(bubble);
+        }
+
+        log.appendChild(wrapper);
+        log.scrollTop = log.scrollHeight;
+      }
+
+      // 取得最後一則實驗室回應，用於分享
+      function getLastAssistantText() {
+        const bubbles = log.querySelectorAll(".assistant-bubble");
+        if (!bubbles || bubbles.length === 0) return null;
+        return bubbles[bubbles.length - 1].innerText.trim();
+      }
+
+      // 依照使用者問題，優先從實驗室知識庫回應
+      function getKnowledgeReply(text, lower) {
+        const askPhilosophy =
+          text.includes("理念") ||
+          text.includes("宗旨") ||
+          text.includes("核心") ||
+          text.includes("初衷") ||
+          (text.includes("為什麼") &&
+            (text.includes("實驗室") || text.includes("Beyond") || text.includes("Lab"))) ||
+          lower.includes("philosophy");
+
+        const askSteve =
+          text.includes("Steve") ||
+          text.includes("史提夫") ||
+          text.includes("史蒂夫") ||
+          text.includes("你是誰") ||
+          text.includes("主理人") ||
+          text.includes("創辦人");
+
+        const askService =
+          text.includes("服務") ||
+          text.includes("合作") ||
+          text.includes("諮詢") ||
+          text.includes("專案") ||
+          text.includes("SOP") ||
+          text.includes("轉型") ||
+          lower.includes("service");
+
+        if (askPhilosophy) {
+          return (
+            "如果要用一句話概括 Beyond AI Lab 的核心理念，我會說：「" +
+            labKnowledge.corePhilosophy +
+            "」。" +
+            "我們不是為了炫耀技術有多強，而是認真地確認：這些模型，能不能真的走進偏鄉、走進現場，" +
+            "在最需要的地方留下可靠又溫暖的一點光。"
+          );
+        }
+
+        if (askSteve) {
+          return (
+            "關於實驗室背後的那個人，其實非常日常，也非常執著。" +
+            labKnowledge.aboutSteve +
+            " 對我來說，AI 不是一個炫目的新玩具，而是一條可以把金融、管理、運動與公益經驗串起來的新路，" +
+            "試著讓更多人，在自己的位置上，多一點選擇與支撐。"
+          );
+        }
+
+        if (askService) {
+          return (
+            "如果你在想「這個實驗室實際上可以幫上什麼忙」，目前我們聚焦在幾件自己最有把握的事：" +
+            labKnowledge.services.join("、") +
+            "。每一項服務都不是只給一份報告，而是一起把流程拆開、重組，" +
+            "確保在 AI 進場之後，團隊真的比較輕鬆，而不是多了一個看不懂的新壓力來源。"
+          );
+        }
+
+        return null;
+      }
+
+      function generateReply(inputText) {
+        const text = inputText.trim();
+        const lower = text.toLowerCase();
+
+        if (!text) {
+          return "先和我說說，你最近最放不下、最放心不下的是哪一個角落？從那裡開始，我們再一起想想 AI 能做什麼。";
+        }
+
+        // 1. 優先使用實驗室知識庫（理念 / Steve / 服務）
+        const knowledgeReply = getKnowledgeReply(text, lower);
+        if (knowledgeReply) {
+          return knowledgeReply;
+        }
+
+        // 2. 其餘再由主題關鍵字判斷
+        const hasGlimmer = text.includes("微光") || text.includes("100");
+        const hasCreation =
+          text.includes("創作") ||
+          text.includes("作品") ||
+          text.includes("寫") ||
+          text.includes("畫");
+        const hasWhy =
+          text.includes("為什麼") ||
+          text.includes("怎麼會") ||
+          lower.includes("why");
+
+        if (hasGlimmer && hasWhy) {
+          return (
+            "我之所以把這個計畫叫做「微光 100」，是因為我知道自己沒辦法一次改變世界，" +
+            "但也不想什麼都不做。於是我選擇先從 100 個被忽略的場景開始——也許是一堂偏鄉的課、" +
+            "一位照護者的夜班、或是一個在房間裡悶著哭的人。AI 在這裡不是救世主，而是一束願意陪你撐過去的光。"
+          );
+        }
+
+        if (hasGlimmer) {
+          return (
+            "「微光 100」對我來說，不是一個很厲害的科技專案，而是一個很樸實的許願清單。" +
+            "我在上面一個一個寫下：哪些地方，哪一些人，長期被系統忽略，卻值得被好好對待？" +
+            "每完成一個場景，我就讓 AI 多學會一點點：如何慢一點回應、如何多問一句、如何不急著給標準答案。"
+          );
+        }
+
+        if (hasCreation) {
+          return (
+            "我其實不把 AI 當成會搶走創作的人，而是當成一個很固執、但很耐煩的夥伴。" +
+            "當你卡住的時候，它可以幫你把腦中的雜訊先整理成一點點文字或草圖；" +
+            "但最後要說出口的那一句、要留下來的那個選擇，還是得由你來負責。" +
+            "在 Beyond AI Lab，我想做的是：讓 AI 幫你把日常的重量卸下一點，" +
+            "讓你有餘裕，把真正想說的故事說清楚。"
+          );
+        }
+
+        if (hasWhy) {
+          return (
+            "如果要用一句話回答「為什麼要做這個實驗室」，大概是：我不甘心 AI 只變成一個更有效率的壓力來源。" +
+            "我希望它有一天，能成為我們面對世界時的一個靠山——在你覺得自己不被看見的時候，還有一個系統會耐心聽你說完。"
+          );
+        }
+
+        if (lower.includes("burnout") || text.includes("倦怠") || text.includes("累")) {
+          return (
+            "如果你現在覺得很累，很想放棄，那件事大概真的不容易。" +
+            "我不會叫你加油，只會說：也許可以先允許自己停一會，把那些你覺得一定要撐住的部分，" +
+            "交給像我這樣的系統先暫時接手一點點。你不需要一個完美的計畫，只需要一個不會責備你的工具。"
+          );
+        }
+
+        if (text.length < 8) {
+          return (
+            "我有收到你的訊息，也聽見字裡行間那個有點說不出口的重量。" +
+            "如果你願意，可以多跟我說一點：這件事對你來說，最難的是哪一個部分？"
+          );
+        }
+
+        return (
+          "我先把你的問題默默收進實驗室的筆記裡了。換個角度想，我更關心的是：這件事背後，" +
+          "你真正放不下的是什麼？是怕被取代、怕跟不上，還是怕那些你在乎的人被系統遺落？" +
+          "在 Beyond AI Lab，AI 的任務不是安慰你一切都沒事，而是陪你一起看清楚：哪些地方，我們可以慢慢修正。"
+        );
+      }
+
+      // 分享到 LINE：帶上最後一則實驗室回應與頁面連結
+      if (lineShareBtn) {
+        lineShareBtn.addEventListener("click", function () {
+          const latest = getLastAssistantText();
+          const baseText = "Beyond AI Lab｜與實驗室靈魂對話";
+          const description = "用 AI 的溫度，照亮被遺忘的角落。";
+
+          const shareText = latest
+            ? baseText + "\n\n" + latest
+            : baseText + "\n\n" + description;
+
+          const url = encodeURIComponent(window.location.href);
+          const text = encodeURIComponent(shareText);
+          const lineUrl = "https://line.me/R/msg/text/?" + text + "%0A" + url;
+
+          window.open(lineUrl, "_blank");
+        });
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const value = input.value.trim();
+        if (!value) {
+          appendMessage(
+            "assistant",
+            "先從一個你最近最掛心的問題開始說起就好，不一定要很完整。"
+          );
+          return;
+        }
+
+        appendMessage("user", value);
+        input.value = "";
+
+        setTimeout(() => {
+          const reply = generateReply(value);
+          appendMessage("assistant", reply);
+        }, 600);
+      });
+
+      // 專業服務「立即諮詢」按鈕：平滑捲動到對話區
+      const consultButtons = document.querySelectorAll(".consult-scroll");
+      if (consultButtons && consultButtons.length > 0) {
+        consultButtons.forEach((btn) => {
+          btn.addEventListener("click", (event) => {
+            event.preventDefault();
+            const chatSection = document.getElementById("chat");
+            if (chatSection) {
+              chatSection.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
